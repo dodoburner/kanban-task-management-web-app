@@ -1,0 +1,33 @@
+header {
+  display: flex;
+  padding: 16px;
+  align-items: center;
+  background-color: white;
+}
+
+.logo {
+  margin-right: 16px;
+}
+
+.header-name-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: auto;
+}
+
+.add-task-btn {
+  margin-right: 16px;
+  background: #635FC7;
+  border-radius: 24px;
+  padding: 10px 18px;
+  opacity: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.elipsis {
+  height: 16px;
+}
+
