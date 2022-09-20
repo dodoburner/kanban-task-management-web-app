@@ -1,0 +1,27 @@
+.board {
+  background-color: #F4F7FD;
+  height: 100vh;
+  padding: 16px;
+}
+
+.board-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.board-empty-text {
+  text-align: center;
+  color: #828FA3;
+  margin-bottom: 25px;
+}
+
+.add-column-btn {
+  font-weight: 700;
+  font-size: 15px;
+  color: white;
+  background-color: #635FC7;
+  border-radius: 24px;
+  padding: 15px 18px;
+}

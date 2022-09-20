@@ -3,7 +3,7 @@ import "../styles/Header.css";
 import mobileLogo from "../assets/logo-mobile.svg";
 import addTaskMobile from "../assets/icon-add-task-mobile.svg";
 import iconDown from "../assets/icon-chevron-down.svg";
-import elipsis from "../assets/icon-vertical-ellipsis.svg"
+import elipsis from "../assets/icon-vertical-ellipsis.svg";
 
 export default function Header() {
   return (
