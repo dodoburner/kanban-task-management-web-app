@@ -11,3 +11,8 @@ body {
   box-sizing: border-box;
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
+
+button,
+input {
+  cursor: pointer;
+}

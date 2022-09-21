@@ -1,9 +1,13 @@
 import React from "react";
 import "../styles/Board.css";
+import AddEditBoardModal from "./AddEditBoardModal";
+
+let openBoardModal = true;
 
 export default function Board() {
   return (
     <div className="board board-empty">
+      {openBoardModal ? <AddEditBoardModal /> : null}
       <h3 className="board-empty-text">
         This board is empty. Create a new column to get started.
       </h3>
