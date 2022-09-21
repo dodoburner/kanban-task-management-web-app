@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/Board.css";
 import AddEditBoardModal from "./AddEditBoardModal";
 
-let openBoardModal = true;
+let openBoardModal = false;
 
 export default function Board() {
   return (

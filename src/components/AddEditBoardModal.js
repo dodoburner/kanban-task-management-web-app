@@ -1,6 +1,6 @@
 import React from "react";
 import crossIcon from "../assets/icon-cross.svg";
-import "../styles/BoardModal.css";
+import "../styles/BoardModals.css";
 
 export default function AddEditBoardModal() {
   return (
@@ -9,7 +9,7 @@ export default function AddEditBoardModal() {
       <label for="board-name-input">Board Name</label>
       <input id="board-name-input" type="text" placeholder="e.g. Web Design" />
 
-      <p>Board Columns</p>
+      <label>Board Columns</label>
       <div className="modal-columns">
         <div className="modal-column">
           <input type="text" value="Todo" />

@@ -5,6 +5,7 @@
   width: 343px;
   padding: 24px;
   padding-bottom: 0;
+  border-radius: 6px;
 }
 
 .modal button {
@@ -26,8 +27,7 @@
   margin-bottom: 24px;
 }
 
-.modal label,
-.modal p {
+.modal label {
   display: block;
   margin-bottom: 8px;
   font-weight: 700;
@@ -65,3 +65,4 @@ input {
 #board-name-input::placeholder {
   opacity: 0.25;
 }
+

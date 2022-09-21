@@ -4,6 +4,9 @@ import mobileLogo from "../assets/logo-mobile.svg";
 import addTaskMobile from "../assets/icon-add-task-mobile.svg";
 import iconDown from "../assets/icon-chevron-down.svg";
 import elipsis from "../assets/icon-vertical-ellipsis.svg";
+import AllBoardsDropdown from "./AllBoardsDropdown";
+
+let openDropdown = true;
 
 export default function Header() {
   return (
@@ -17,6 +20,7 @@ export default function Header() {
         <img src={addTaskMobile} />
       </button>
       <img className="elipsis" src={elipsis} />
+      {openDropdown ? <AllBoardsDropdown /> : null}
     </header>
   );
 }
