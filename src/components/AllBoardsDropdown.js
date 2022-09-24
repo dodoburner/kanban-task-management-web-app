@@ -8,15 +8,14 @@ import modalsSlice from "../redux/modalsSlice";
 export default function AllBoardsDropdown() {
   const dispatch = useDispatch();
   const boards = useSelector((state) => state.boards);
-  console.log(boards);
 
   return (
     <div className="dropdown-modal">
       <h3>ALL BOARDS (3)</h3>
       <div className="dropdown-boards">
-        {boards.map((board) => {
+        {boards.map((board, index) => {
           return (
-            <div className="dropdown-board board-active">
+            <div className="dropdown-board board-active" key={index}>
               <img className="filter-white" src={boardIcon} /> {board.name}
             </div>
           );

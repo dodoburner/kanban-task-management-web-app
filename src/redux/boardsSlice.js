@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import data from '../data.json'
 
 const boardsSlice = createSlice({
   name: 'boards',
-  initialState: [],
+  initialState: data.boards,
   reducers: {
     addBoard: (state, action) => {
       const board = {
