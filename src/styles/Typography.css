@@ -20,15 +20,16 @@
   font-weight: bold;
   font-size: 12px;
   line-height: 15px;
-  kerning: 2.4px;
+  letter-spacing: 2.4px;
 }
 
-.text-medium {
+.text-L {
   font-size: 13px;
   line-height: 23px;
 }
 
-.text-small {
+.text-M {
+  font-weight: bold;
   font-size: 12px;
   line-height: 15px;
 }

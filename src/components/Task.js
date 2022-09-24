@@ -11,8 +11,8 @@ export default function Task({ task }) {
 
   return (
     <div className="task">
-      <p className="task-name">{task.title}</p>
-      <p className="num-of-subtasks">
+      <p className="task-title heading-M">{task.title}</p>
+      <p className="num-of-subtasks text-M">
         {completed} of {subtasks.length} subtasks
       </p>
     </div>

@@ -2,10 +2,13 @@
   background-color: #F4F7FD;
   height: 100vh;
   padding: 16px;
+  display: flex;
+  gap: 24px;
+  overflow: scroll;
+  padding: 24px 16px;
 }
 
 .board-empty {
-  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;

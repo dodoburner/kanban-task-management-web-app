@@ -14,7 +14,7 @@ export default function Header() {
     <header>
       <img className="logo" src={mobileLogo} />
       <div
-        className="header-name-container"
+        className="header-name-container heading-L"
         onClick={() => {
           setOpenDropdown(!openDropdown);
         }}
