@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import crossIcon from "../assets/icon-cross.svg";
 import boardsSlice from "../redux/boardsSlice";
+import modalsSlice from "../redux/modalsSlice";
 import "../styles/BoardModals.css";
 
 export default function AddEditBoardModal() {
@@ -47,6 +48,7 @@ export default function AddEditBoardModal() {
       </button>
       <button onClick={() => {
         dispatch(boardsSlice.actions.addBoard({ name, columns}))
+        dispatch(modalsSlice.actions.openBoardModal())
       }} className="add-column-btn">Create New Board</button>
     </div>
   );

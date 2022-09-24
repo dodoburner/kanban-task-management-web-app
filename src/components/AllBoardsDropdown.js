@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import boardIcon from "../assets/icon-board.svg";
 import darkIcon from "../assets/icon-dark-theme.svg";
 import lightIcon from "../assets/icon-light-theme.svg";
@@ -7,24 +7,24 @@ import modalsSlice from "../redux/modalsSlice";
 
 export default function AllBoardsDropdown() {
   const dispatch = useDispatch();
+  const boards = useSelector((state) => state.boards);
+  console.log(boards);
 
   return (
     <div className="dropdown-modal">
       <h3>ALL BOARDS (3)</h3>
       <div className="dropdown-boards">
-        <div className="dropdown-board board-active">
-          <img className="filter-white" src={boardIcon} /> Platform Launch
-        </div>
-        <div className="dropdown-board">
-          <img src={boardIcon} /> Marketing Plan
-        </div>
-        <div className="dropdown-board">
-          <img src={boardIcon} /> Roadmap
-        </div>
+        {boards.map((board) => {
+          return (
+            <div className="dropdown-board board-active">
+              <img className="filter-white" src={boardIcon} /> {board.name}
+            </div>
+          );
+        })}
         <div
           className="dropdown-board dropdown-create-board-btn"
           onClick={() => {
-            dispatch(modalsSlice.actions.openBoardModal())
+            dispatch(modalsSlice.actions.openBoardModal());
           }}
         >
           <img className="filter-purple" src={boardIcon} /> + Create New Board
