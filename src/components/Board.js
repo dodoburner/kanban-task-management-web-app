@@ -7,10 +7,6 @@ export default function Board() {
   const modalsState = useSelector((state) => state.openModals);
   const openBoardModal = modalsState.openBoardModal;
 
-  useEffect(() => {
-    console.log(modalsState)
-  }, [modalsState])
-
   return (
     <div className="board board-empty">
       {openBoardModal ? <AddEditBoardModal /> : null}
