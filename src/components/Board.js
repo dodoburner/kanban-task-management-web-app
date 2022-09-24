@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import "../styles/Board.css";
 import AddEditBoardModal from "./AddEditBoardModal";
 
-let openBoardModal = false;
-
 export default function Board() {
+  const modalsState = useSelector((state) => state.openModals);
+  const openBoardModal = modalsState.openBoardModal;
+
+  useEffect(() => {
+    console.log(modalsState)
+  }, [modalsState])
+
   return (
     <div className="board board-empty">
       {openBoardModal ? <AddEditBoardModal /> : null}

@@ -6,7 +6,7 @@ export default function AddEditBoardModal() {
   return (
     <div className="modal">
       <h3>Add New Board</h3>
-      <label for="board-name-input">Board Name</label>
+      <label htmlFor="board-name-input">Board Name</label>
       <input id="board-name-input" type="text" placeholder="e.g. Web Design" />
 
       <label>Board Columns</label>

@@ -13,9 +13,12 @@ export default function Header() {
   return (
     <header>
       <img className="logo" src={mobileLogo} />
-      <div className="header-name-container" onClick={() => {
-        setOpenDropdown(!openDropdown)
-      }}>
+      <div
+        className="header-name-container"
+        onClick={() => {
+          setOpenDropdown(!openDropdown);
+        }}
+      >
         <h3 className="header-name">Platform Launch</h3>
         <img src={openDropdown ? iconUp : iconDown} />
       </div>
@@ -23,7 +26,9 @@ export default function Header() {
         <img src={addTaskMobile} />
       </button>
       <img className="elipsis" src={elipsis} />
-      {openDropdown ? <AllBoardsDropdown /> : null}
+      {openDropdown ? (
+        <AllBoardsDropdown setOpenDropdown={setOpenDropdown} />
+      ) : null}
     </header>
   );
 }

@@ -1,7 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import modalsSlice from "./modalsSlice";
 
 const store = configureStore({
-  reducer: {}
+  reducer: {
+    openModals: modalsSlice.reducer
+  }
 })
 
 export default store
