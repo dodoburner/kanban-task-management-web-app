@@ -15,7 +15,7 @@ export default function Board() {
   const columns = board.columns;
 
   return (
-    <div className={`board ${board.columns.length > 0 ? null : "board-empty"}`}>
+    <div className={`board ${board.columns.length > 0 ? '' : "board-empty"}`}>
       {columns.length > 0 ? (
         columns.map((col, index) => {
           return (
