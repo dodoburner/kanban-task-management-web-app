@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import "../styles/TaskModals.css";
 import Subtask from "./Subtask";
 
-export default function AddTaskModal() {
+export default function TaskModal() {
   const modalsState = useSelector((state) => state.openModals);
   const task = modalsState.openTaskModal.task;
   let completed = 0;
@@ -16,7 +16,7 @@ export default function AddTaskModal() {
 
   return (
     <div className="modal-container">
-      <div className="add-task-modal">
+      <div className="task-modal">
         <p className="task-title-modal heading-L">{task.title}</p>
         <p className="task-description text-L">{task.description}</p>
         <p className="subtasks-completed heading-S">

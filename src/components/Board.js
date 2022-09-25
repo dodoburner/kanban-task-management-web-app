@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import "../styles/Board.css";
 import AddEditBoardModal from "./AddEditBoardModal";
-import AddTaskModal from "./AddTaskModal";
+import TaskModal from "./TaskModal";
 import Column from "./Column";
 
 export default function Board() {
@@ -32,7 +32,7 @@ export default function Board() {
       )}
 
       {openBoardModal ? <AddEditBoardModal /> : null}
-      {openTaskModal.isOpen ? <AddTaskModal /> : null}
+      {openTaskModal.isOpen ? <TaskModal /> : null}
     </div>
   );
 }
