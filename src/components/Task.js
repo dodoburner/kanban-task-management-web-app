@@ -1,6 +1,9 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import modalsSlice from "../redux/modalsSlice";
 
 export default function Task({ task }) {
+  const dispatch = useDispatch();
   let completed = 0;
   let subtasks = task.subtasks;
   subtasks.forEach((subtask) => {
@@ -10,7 +13,12 @@ export default function Task({ task }) {
   });
 
   return (
-    <div className="task">
+    <div
+      className="task"
+      onClick={() => {
+        dispatch(modalsSlice.actions.openTaskModal({ task }));
+      }}
+    >
       <p className="task-title heading-M">{task.title}</p>
       <p className="num-of-subtasks text-M">
         {completed} of {subtasks.length} subtasks

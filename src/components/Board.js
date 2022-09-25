@@ -2,11 +2,13 @@ import React from "react";
 import { useSelector } from "react-redux";
 import "../styles/Board.css";
 import AddEditBoardModal from "./AddEditBoardModal";
+import AddTaskModal from "./AddTaskModal";
 import Column from "./Column";
 
 export default function Board() {
   const modalsState = useSelector((state) => state.openModals);
   const openBoardModal = modalsState.openBoardModal;
+  const openTaskModal = modalsState.openTaskModal;
 
   const boards = useSelector((state) => state.boards);
   const board = boards[0];
@@ -30,6 +32,7 @@ export default function Board() {
       )}
 
       {openBoardModal ? <AddEditBoardModal /> : null}
+      {openTaskModal.isOpen ? <AddTaskModal /> : null}
     </div>
   );
 }
