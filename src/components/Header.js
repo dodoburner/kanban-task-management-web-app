@@ -16,7 +16,7 @@ export default function Header() {
       <div
         className="header-name-container heading-L"
         onClick={() => {
-          setOpenDropdown(!openDropdown);
+          setOpenDropdown((state) => !state);
         }}
       >
         <h3 className="header-name">Platform Launch</h3>

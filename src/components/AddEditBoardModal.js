@@ -11,7 +11,15 @@ export default function AddEditBoardModal() {
   const dispatch = useDispatch();
 
   return (
-    <div className="modal-container">
+    <div
+      className="modal-container"
+      onClick={(e) => {
+        if (e.target !== e.currentTarget) {
+          return;
+        }
+        dispatch(modalsSlice.actions.toggleBoardModal());
+      }}
+    >
       <div className="modal">
         <h3>Add New Board</h3>
         <label htmlFor="board-name-input">Board Name</label>

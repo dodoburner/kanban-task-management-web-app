@@ -10,12 +10,16 @@ const modalsSlice = createSlice({
     }
   },
   reducers: {
-    openBoardModal: (state) => {
+    toggleBoardModal: (state) => {
       state.openBoardModal = !state.openBoardModal
     },
     openTaskModal: (state, action) => {
       state.openTaskModal.isOpen = !state.openTaskModal.isOpen
       state.openTaskModal.task = action.payload.task
+    },
+    closeTaskModal: (state) => {
+      state.openTaskModal.isOpen = !state.openTaskModal.isOpen
+      state.openTaskModal.task = {}
     }
 }
 })

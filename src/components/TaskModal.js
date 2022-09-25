@@ -1,11 +1,16 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "../styles/TaskModals.css";
 import Subtask from "./Subtask";
+import elipsis from "../assets/icon-vertical-ellipsis.svg";
+import modalsSlice from "../redux/modalsSlice";
 
 export default function TaskModal() {
+  const dispatch = useDispatch();
+
   const modalsState = useSelector((state) => state.openModals);
   const task = modalsState.openTaskModal.task;
+
   let completed = 0;
   const subtasks = task.subtasks;
   subtasks.forEach((subtask) => {
@@ -15,9 +20,17 @@ export default function TaskModal() {
   });
 
   return (
-    <div className="modal-container">
+    <div className="modal-container" onClick={(e) => {
+      if (e.target !== e.currentTarget) {
+        return
+      }
+      dispatch(modalsSlice.actions.closeTaskModal())
+    }}>
       <div className="task-modal">
-        <p className="task-title-modal heading-L">{task.title}</p>
+        <div className="task-modal-title-container">
+          <p className="heading-L">{task.title}</p>
+          <img className="task-modal-elipsis" src={elipsis} />
+        </div>
         <p className="task-description text-L">{task.description}</p>
         <p className="subtasks-completed heading-S">
           Subtasks ({completed} of {subtasks.length})

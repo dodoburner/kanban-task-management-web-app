@@ -17,8 +17,15 @@
   border-radius: 6px;
 }
 
-.task-title-modal {
+.task-modal-title-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
   margin-bottom: 24px;
+}
+
+.task-modal-elipsis {
+  cursor: pointer;
 }
 
 .task-description {

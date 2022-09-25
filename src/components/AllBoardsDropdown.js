@@ -5,7 +5,7 @@ import darkIcon from "../assets/icon-dark-theme.svg";
 import lightIcon from "../assets/icon-light-theme.svg";
 import modalsSlice from "../redux/modalsSlice";
 
-export default function AllBoardsDropdown() {
+export default function AllBoardsDropdown({ setOpenDropdown }) {
   const dispatch = useDispatch();
   const boards = useSelector((state) => state.boards);
 
@@ -23,7 +23,8 @@ export default function AllBoardsDropdown() {
         <div
           className="dropdown-board dropdown-create-board-btn"
           onClick={() => {
-            dispatch(modalsSlice.actions.openBoardModal());
+            dispatch(modalsSlice.actions.toggleBoardModal());
+            setOpenDropdown((state) => !state)
           }}
         >
           <img className="filter-purple" src={boardIcon} /> + Create New Board
