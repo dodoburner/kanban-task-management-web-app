@@ -33,15 +33,22 @@ header {
 }
 
 /* dropdown modal */
+.dropdown-container {
+  position: fixed;
+  top: 64px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 24px 55px;
+}
 
 .dropdown-modal {
-  position: absolute;
-  bottom: -350px;
-  left: 10%;
-  right: 10%;
+  width: 100%;
   background-color: white;
   box-shadow: 0px 10px 20px rgba(54, 78, 126, 0.25);
   border-radius: 8px;
+  padding: 16px 0;
 }
 
 .dropdown-modal h3 {
@@ -49,7 +56,7 @@ header {
   line-height: 15px;
   letter-spacing: 2.4px;
   color: #828FA3;
-  margin: 16px 0 24px 19px;
+  margin: 0 0 24px 19px;
 }
 
 .dropdown-board {
@@ -89,7 +96,7 @@ header {
   align-items: center;
   justify-content: center;
   gap: 24px;
-  margin: 16px;
+  margin: 16px 16px 0 16px;
   background: #F4F7FD;
   border-radius: 6px; 
 }
