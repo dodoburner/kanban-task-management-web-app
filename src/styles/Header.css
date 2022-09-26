@@ -22,10 +22,13 @@ header {
   background: #635FC7;
   border-radius: 24px;
   padding: 10px 18px;
-  opacity: 25%;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.btn-off {
+  opacity: 25%;
 }
 
 .elipsis {

@@ -25,7 +25,9 @@ export default function Header() {
         <h3 className="header-name">{board.name}</h3>
         <img src={openDropdown ? iconUp : iconDown} />
       </div>
-      <button className="add-task-btn">
+      <button
+        className={`add-task-btn ${board.columns.length > 0 ? "" : "btn-off"}`}
+      >
         <img src={addTaskMobile} />
       </button>
       <img className="elipsis" src={elipsis} />
