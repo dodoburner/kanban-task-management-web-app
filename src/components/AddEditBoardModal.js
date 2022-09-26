@@ -64,7 +64,7 @@ export default function AddEditBoardModal() {
         <button
           onClick={() => {
             dispatch(boardsSlice.actions.addBoard({ name, columns }));
-            dispatch(modalsSlice.actions.openBoardModal());
+            dispatch(modalsSlice.actions.toggleBoardModal());
           }}
           className="add-column-btn"
         >

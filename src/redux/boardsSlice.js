@@ -8,6 +8,7 @@ const boardsSlice = createSlice({
     addBoard: (state, action) => {
       const board = {
         name: action.payload.name,
+        isActive: false,
         columns: []
       }
       action.payload.columns.forEach((column) => {
