@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import "../styles/Header.css";
 import mobileLogo from "../assets/logo-mobile.svg";
 import addTaskMobile from "../assets/icon-add-task-mobile.svg";
@@ -9,6 +10,8 @@ import AllBoardsDropdown from "./AllBoardsDropdown";
 
 export default function Header() {
   let [openDropdown, setOpenDropdown] = useState(false);
+  const boards = useSelector((state) => state.boards);
+  const board = boards.find((board) => board.isActive);
 
   return (
     <header>
@@ -19,7 +22,7 @@ export default function Header() {
           setOpenDropdown((state) => !state);
         }}
       >
-        <h3 className="header-name">Platform Launch</h3>
+        <h3 className="header-name">{board.name}</h3>
         <img src={openDropdown ? iconUp : iconDown} />
       </div>
       <button className="add-task-btn">

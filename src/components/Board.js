@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "../styles/Board.css";
 import AddEditBoardModal from "./AddEditBoardModal";
 import TaskModal from "./TaskModal";
@@ -11,8 +11,8 @@ export default function Board() {
   const openTaskModal = modalsState.openTaskModal;
 
   const boards = useSelector((state) => state.boards);
-  const board = boards[0];
-  const columns = board.columns;
+  const board = boards.find((board) => board.isActive === true);
+  const columns = board.columns; 
 
   return (
     <div className={`board ${board.columns.length > 0 ? '' : "board-empty"}`}>

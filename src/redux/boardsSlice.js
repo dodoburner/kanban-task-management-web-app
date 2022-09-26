@@ -18,6 +18,12 @@ const boardsSlice = createSlice({
         board.columns.push(col)
       })
       state.push(board)
+    },
+    setBoardActive: (state, action) => {
+      state.map((board, index) => {
+        index === action.payload.index ? board.isActive = true : board.isActive = false
+        return board
+      })
     }
   }
 })
