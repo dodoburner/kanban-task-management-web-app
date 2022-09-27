@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../styles/TaskModals.css";
-import Subtask from "./Subtask";
+import Subtask from "../components/Subtask";
 import elipsis from "../assets/icon-vertical-ellipsis.svg";
 import modalsSlice from "../redux/modalsSlice";
 

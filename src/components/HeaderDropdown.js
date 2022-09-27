@@ -6,7 +6,7 @@ import lightIcon from "../assets/icon-light-theme.svg";
 import boardsSlice from "../redux/boardsSlice";
 import modalsSlice from "../redux/modalsSlice";
 
-export default function AllBoardsDropdown({ setOpenDropdown }) {
+export default function HeaderDropdown({ setOpenDropdown }) {
   const dispatch = useDispatch();
   const boards = useSelector((state) => state.boards);
 

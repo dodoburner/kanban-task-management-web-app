@@ -6,7 +6,7 @@ import addTaskMobile from "../assets/icon-add-task-mobile.svg";
 import iconDown from "../assets/icon-chevron-down.svg";
 import iconUp from "../assets/icon-chevron-up.svg";
 import elipsis from "../assets/icon-vertical-ellipsis.svg";
-import AllBoardsDropdown from "./AllBoardsDropdown";
+import HeaderDropdown from "./HeaderDropdown";
 
 export default function Header() {
   let [openDropdown, setOpenDropdown] = useState(false);
@@ -32,7 +32,7 @@ export default function Header() {
       </button>
       <img className="elipsis" src={elipsis} />
       {openDropdown ? (
-        <AllBoardsDropdown setOpenDropdown={setOpenDropdown} />
+        <HeaderDropdown setOpenDropdown={setOpenDropdown} />
       ) : null}
     </header>
   );

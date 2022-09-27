@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import "../styles/Board.css";
 import AddEditBoardModal from "../modals/AddEditBoardModal";
-import TaskModal from "./TaskModal";
+import TaskModal from "../modals/TaskModal";
 import Column from "./Column";
 
 export default function Board() {
