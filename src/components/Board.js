@@ -1,7 +1,7 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import "../styles/Board.css";
-import AddEditBoardModal from "./AddEditBoardModal";
+import AddEditBoardModal from "../modals/AddEditBoardModal";
 import TaskModal from "./TaskModal";
 import Column from "./Column";
 

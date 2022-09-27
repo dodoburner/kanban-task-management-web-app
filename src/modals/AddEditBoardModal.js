@@ -63,7 +63,16 @@ export default function AddEditBoardModal() {
                     </span>
                   ) : null}
                 </div>
-                <img src={crossIcon} />
+                <img src={crossIcon} onClick={() => {
+                  setColumns(columns.filter((el, i) => i !== index))
+                  setInputEmpty((prevState) => {
+                    const newState = [...prevState].filter((el, i) =>  i !== index);
+                    return newState.map((el) => {
+                      el = false
+                      return el
+                    })
+                  })
+                }}/>
               </div>
             );
           })}
@@ -104,7 +113,7 @@ export default function AddEditBoardModal() {
                   newState[index + 1] = true;
                   return newState;
                 });
-                return;
+                submit = false
               } else {
                 setInputEmpty((prevState) => {
                   const newState = [...prevState];
