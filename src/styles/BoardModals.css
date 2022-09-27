@@ -64,3 +64,21 @@
   opacity: 0.25;
 }
 
+.input-container {
+  width: 100%;
+  position: relative;
+}
+
+.cant-be-empty-span {
+  position: absolute;
+  color: #EA5555;
+  top: 8px;
+  right: 16px;
+  width: fit-content;
+  white-space: nowrap;
+}
+
+.red-border {
+  border-color: #EA5555 !important;
+}
+
