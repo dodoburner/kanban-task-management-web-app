@@ -14,12 +14,12 @@ export default function AddEditBoardModal() {
   const validate = () => {
     setIsValid(false);
 
-    if (name.trim().length === 0) {
+    if (name.length === 0) {
       return false;
     }
 
     columns.forEach((column) => {
-      if (column.trim().length === 0) {
+      if (column.length === 0) {
         return false;
       }
     });
@@ -52,7 +52,7 @@ export default function AddEditBoardModal() {
         <div className="input-container">
           <input
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => setName(e.target.value.trim())}
             id="board-name-input"
             type="text"
             placeholder="e.g. Web Design"
@@ -71,7 +71,7 @@ export default function AddEditBoardModal() {
                 <div className="input-container">
                   <input
                     onChange={(e) => {
-                      onChange(index, e.target.value);
+                      onChange(index, e.target.value.trim());
                     }}
                     type="text"
                     value={column}
