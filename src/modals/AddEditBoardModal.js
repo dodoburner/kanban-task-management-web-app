@@ -8,8 +8,33 @@ import "../styles/BoardModals.css";
 export default function AddEditBoardModal() {
   const [name, setName] = useState("");
   const [columns, setColumns] = useState(["Todo", "Doing"]);
-  const [inputEmpty, setInputEmpty] = useState([false, false, false]);
+  const [isValid, setIsValid] = useState(true);
   const dispatch = useDispatch();
+
+  const validate = () => {
+    setIsValid(false);
+
+    if (name.trim().length === 0) {
+      return false;
+    }
+
+    columns.forEach((column) => {
+      if (column.trim().length === 0) {
+        return false;
+      }
+    });
+
+    setIsValid(true);
+    return true;
+  };
+
+  const onChange = (index, newValue) => {
+    setColumns((prevState) => {
+      const newState = [...prevState];
+      newState[index] = newValue;
+      return newState;
+    });
+  };
 
   return (
     <div
@@ -31,9 +56,9 @@ export default function AddEditBoardModal() {
             id="board-name-input"
             type="text"
             placeholder="e.g. Web Design"
-            className={inputEmpty[0] ? "red-border" : ""}
+            className={!isValid && !name ? "red-border" : ""}
           />
-          {inputEmpty[0] ? (
+          {!isValid && !name ? (
             <span className="cant-be-empty-span text-L"> Can't be empty</span>
           ) : null}
         </div>
@@ -46,33 +71,29 @@ export default function AddEditBoardModal() {
                 <div className="input-container">
                   <input
                     onChange={(e) => {
-                      setColumns(
-                        columns.map((el, i) => {
-                          return i === index ? e.target.value : el;
-                        })
-                      );
+                      onChange(index, e.target.value);
                     }}
                     type="text"
                     value={column}
-                    className={inputEmpty[index + 1] ? "red-border" : ""}
+                    className={!isValid && !column ? "red-border" : ""}
                   />
-                  {inputEmpty[index + 1] ? (
+                  {!isValid && !column ? (
                     <span className="cant-be-empty-span text-L">
                       {" "}
                       Can't be empty
                     </span>
                   ) : null}
                 </div>
-                <img src={crossIcon} onClick={() => {
-                  setColumns(columns.filter((el, i) => i !== index))
-                  setInputEmpty((prevState) => {
-                    const newState = [...prevState].filter((el, i) =>  i !== index);
-                    return newState.map((el) => {
-                      el = false
-                      return el
-                    })
-                  })
-                }}/>
+                <img
+                  src={crossIcon}
+                  alt="delete-column-icon"
+                  onClick={() => {
+                    setColumns((prevState) => {
+                      const newState = prevState.filter((el, i) => i !== index);
+                      return newState;
+                    });
+                  }}
+                />
               </div>
             );
           })}
@@ -81,7 +102,6 @@ export default function AddEditBoardModal() {
         <button
           onClick={() => {
             setColumns((state) => [...state, ""]);
-            setInputEmpty((state) => [...state, false]);
           }}
           className="add-column-btn btn-light"
         >
@@ -89,41 +109,9 @@ export default function AddEditBoardModal() {
         </button>
         <button
           onClick={() => {
-            let submit = true;
+            const isValid = validate();
 
-            if (name.trim().length === 0) {
-              setInputEmpty((prevState) => {
-                const state = [...prevState];
-                state[0] = true;
-                return state;
-              });
-              submit = false;
-            } else {
-              setInputEmpty((prevState) => {
-                const state = [...prevState];
-                state[0] = false;
-                return state;
-              });
-            }
-
-            columns.forEach((column, index) => {
-              if (column.trim().length === 0) {
-                setInputEmpty((prevState) => {
-                  const newState = [...prevState];
-                  newState[index + 1] = true;
-                  return newState;
-                });
-                submit = false
-              } else {
-                setInputEmpty((prevState) => {
-                  const newState = [...prevState];
-                  newState[index + 1] = false;
-                  return newState;
-                });
-              }
-            });
-
-            if (submit === true) {
+            if (isValid === true) {
               dispatch(boardsSlice.actions.addBoard({ name, columns }));
               dispatch(modalsSlice.actions.toggleBoardModal());
             }
