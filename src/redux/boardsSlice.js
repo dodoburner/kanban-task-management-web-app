@@ -39,9 +39,13 @@ const boardsSlice = createSlice({
     setTaskStatus: (state, action) => {
       const payload = action.payload;
       const board = state.find((board) => board.isActive === true);
-      const col = board.columns.find((col, i) => i === payload.colIndex);
+      const columns = board.columns;
+      const col = columns.find((col, i) => i === payload.colIndex);
       const task = col.tasks.find((task, i) => i === payload.taskIndex);
       task.status = payload.status;
+      col.tasks = col.tasks.filter((task, i) => i !== payload.taskIndex)
+      const newCol = columns.find((col, i) => i === payload.newColIndex)
+      newCol.tasks.push(task)
     },
   },
 });

@@ -8,7 +8,6 @@ import boardsSlice from "../redux/boardsSlice";
 
 export default function TaskModal() {
   const dispatch = useDispatch();
-
   const modalsState = useSelector((state) => state.openModals);
   const payload = modalsState.openTaskModal;
   const taskIndex = payload.taskIndex;
@@ -18,9 +17,9 @@ export default function TaskModal() {
   const columns = board.columns;
   const col = columns.find((col, i) => i === colIndex);
   const task = col.tasks.find((task, i) => i === taskIndex);
+  const subtasks = task.subtasks;
 
   let completed = 0;
-  const subtasks = task.subtasks;
   subtasks.forEach((subtask) => {
     if (subtask.isCompleted) {
       completed++;
@@ -28,26 +27,29 @@ export default function TaskModal() {
   });
 
   const [status, setStatus] = useState(task.status);
+  const [newColIndex, setNewColIndex] = useState(columns.indexOf(col));
   const onChange = (e) => {
     setStatus(e.target.value);
+    setNewColIndex(e.target.selectedIndex);
+  };
+
+  const onClose = (e) => {
+    if (e.target !== e.currentTarget) {
+      return;
+    }
     dispatch(
       boardsSlice.actions.setTaskStatus({
         taskIndex,
         colIndex,
-        status: e.target.value,
+        newColIndex,
+        status,
       })
     );
+    dispatch(modalsSlice.actions.closeTaskModal());
   };
+
   return (
-    <div
-      className="modal-container"
-      onClick={(e) => {
-        if (e.target !== e.currentTarget) {
-          return;
-        }
-        dispatch(modalsSlice.actions.closeTaskModal());
-      }}
-    >
+    <div className="modal-container" onClick={onClose}>
       <div className="task-modal">
         <div className="task-modal-title-container">
           <p className="heading-L">{task.title}</p>
@@ -58,6 +60,7 @@ export default function TaskModal() {
           />
         </div>
         <p className="task-description text-L">{task.description}</p>
+
         <p className="subtasks-completed heading-S">
           Subtasks ({completed} of {subtasks.length})
         </p>
@@ -71,6 +74,7 @@ export default function TaskModal() {
             />
           );
         })}
+
         <div className="select-column-container">
           <p className="current-status-text text-M">Current Status</p>
           <select
