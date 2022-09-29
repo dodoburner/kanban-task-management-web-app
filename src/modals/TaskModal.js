@@ -11,12 +11,13 @@ export default function TaskModal() {
 
   const modalsState = useSelector((state) => state.openModals);
   const payload = modalsState.openTaskModal;
-  const task = payload.task;
   const taskIndex = payload.taskIndex;
   const colIndex = payload.colIndex;
   const boards = useSelector((state) => state.boards);
   const board = boards.find((board) => board.isActive === true);
   const columns = board.columns;
+  const col = columns.find((col, i) => i === colIndex);
+  const task = col.tasks.find((task, i) => i === taskIndex);
 
   let completed = 0;
   const subtasks = task.subtasks;
@@ -63,7 +64,6 @@ export default function TaskModal() {
         {subtasks.map((subtask, index) => {
           return (
             <Subtask
-              subtask={subtask}
               index={index}
               taskIndex={taskIndex}
               colIndex={colIndex}
