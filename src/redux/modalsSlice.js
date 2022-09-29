@@ -6,7 +6,9 @@ const modalsSlice = createSlice({
     openBoardModal: false,
     openTaskModal: {
       isOpen: false,
-      task: {}
+      task: {},
+      index: null,
+      colIndex: null
     }
   },
   reducers: {
@@ -16,6 +18,8 @@ const modalsSlice = createSlice({
     openTaskModal: (state, action) => {
       state.openTaskModal.isOpen = !state.openTaskModal.isOpen
       state.openTaskModal.task = action.payload.task
+      state.openTaskModal.index = action.payload.index
+      state.openTaskModal.colIndex = action.payload.colIndex
     },
     closeTaskModal: (state) => {
       state.openTaskModal.isOpen = !state.openTaskModal.isOpen

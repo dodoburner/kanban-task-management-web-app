@@ -1,32 +1,44 @@
 import { createSlice } from "@reduxjs/toolkit";
-import data from '../data.json'
+import data from "../data.json";
 
 const boardsSlice = createSlice({
-  name: 'boards',
+  name: "boards",
   initialState: data.boards,
   reducers: {
     addBoard: (state, action) => {
       const board = {
         name: action.payload.name,
         isActive: false,
-        columns: []
-      }
+        columns: [],
+      };
       action.payload.columns.forEach((column) => {
         const col = {
           name: column,
-          tasks: []
-        }
-        board.columns.push(col)
-      })
-      state.push(board)
+          tasks: [],
+        };
+        board.columns.push(col);
+      });
+      state.push(board);
     },
     setBoardActive: (state, action) => {
       state.map((board, index) => {
-        index === action.payload.index ? board.isActive = true : board.isActive = false
-        return board
-      })
+        index === action.payload.index
+          ? (board.isActive = true)
+          : (board.isActive = false);
+        return board;
+      });
+    },
+    setSubtaskCompleted: (state, action) => {
+      const board = state.find((board) => board.isActive === true);
+    },
+    setTaskStatus: (state, action) => {
+      const payload = action.payload;
+      const board = state.find((board) => board.isActive === true);
+      const col = board.columns.find((col, i) => i === payload.colIndex);
+      const task = col.tasks.find((task, i) => i === payload.index);
+      task.status = payload.status
     }
-  }
-})
+  },
+});
 
 export default boardsSlice;

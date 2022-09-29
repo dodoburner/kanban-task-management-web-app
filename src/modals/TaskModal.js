@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../styles/TaskModals.css";
 import Subtask from "../components/Subtask";
 import elipsis from "../assets/icon-vertical-ellipsis.svg";
 import modalsSlice from "../redux/modalsSlice";
+import boardsSlice from "../redux/boardsSlice";
 
 export default function TaskModal() {
   const dispatch = useDispatch();
 
   const modalsState = useSelector((state) => state.openModals);
-  const task = modalsState.openTaskModal.task;
+  const payload = modalsState.openTaskModal;
+  const task = payload.task;
+  const index = payload.index;
+  const colIndex = payload.colIndex;
+  const boards = useSelector((state) => state.boards);
+  const board = boards.find((board) => board.isActive === true);
+  const columns = board.columns;
 
   let completed = 0;
   const subtasks = task.subtasks;
@@ -19,31 +26,47 @@ export default function TaskModal() {
     }
   });
 
+  const [status, setStatus] = useState(task.status);
+  const onChange = (e) => {
+    setStatus(e.target.value);
+    dispatch(boardsSlice.actions.setTaskStatus({ index, colIndex, status: e.target.value }))
+  };
   return (
-    <div className="modal-container" onClick={(e) => {
-      if (e.target !== e.currentTarget) {
-        return
-      }
-      dispatch(modalsSlice.actions.closeTaskModal())
-    }}>
+    <div
+      className="modal-container"
+      onClick={(e) => {
+        if (e.target !== e.currentTarget) {
+          return;
+        }
+        dispatch(modalsSlice.actions.closeTaskModal());
+      }}
+    >
       <div className="task-modal">
         <div className="task-modal-title-container">
           <p className="heading-L">{task.title}</p>
-          <img className="task-modal-elipsis" src={elipsis} />
+          <img
+            className="task-modal-elipsis"
+            src={elipsis}
+            alt="task options btn"
+          />
         </div>
         <p className="task-description text-L">{task.description}</p>
         <p className="subtasks-completed heading-S">
           Subtasks ({completed} of {subtasks.length})
         </p>
         {subtasks.map((subtask, index) => {
-          return <Subtask subtask={subtask} key={index} />;
+          return <Subtask subtask={subtask} index={index} key={index} />;
         })}
         <div className="select-column-container">
           <p className="current-status-text text-M">Current Status</p>
-          <select className="select-column text-L">
-            <option>Todo</option>
-            <option>Doing</option>
-            <option>Done</option>
+          <select
+            className="select-column text-L"
+            value={status}
+            onChange={onChange}
+          >
+            {columns.map((col, index) => (
+              <option key={index}>{col.name}</option>
+            ))}
           </select>
         </div>
       </div>

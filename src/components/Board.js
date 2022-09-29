@@ -19,7 +19,7 @@ export default function Board() {
       {columns.length > 0 ? (
         columns.map((col, index) => {
           return (
-            <Column col={col} key={index} />
+            <Column col={col} key={index} colIndex={index} />
           );
         })
       ) : (
