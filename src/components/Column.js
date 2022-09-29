@@ -10,7 +10,7 @@ export default function Column({ col, colIndex }) {
       </p>
       {col.tasks.map((task, index) => {
         return (
-          <Task task={task} key={index} index={index} colIndex={colIndex} />
+          <Task task={task} key={index} taskIndex={index} colIndex={colIndex} />
         );
       })}
     </div>

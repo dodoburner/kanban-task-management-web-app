@@ -29,15 +29,20 @@ const boardsSlice = createSlice({
       });
     },
     setSubtaskCompleted: (state, action) => {
+      const payload = action.payload;
       const board = state.find((board) => board.isActive === true);
+      const col = board.columns.find((col, i) => i === payload.colIndex);
+      const task = col.tasks.find((task, i) => i === payload.taskIndex);
+      const subtask = task.subtasks.find((subtask, i) => i === payload.index);
+      subtask.isCompleted = !subtask.isCompleted;
     },
     setTaskStatus: (state, action) => {
       const payload = action.payload;
       const board = state.find((board) => board.isActive === true);
       const col = board.columns.find((col, i) => i === payload.colIndex);
-      const task = col.tasks.find((task, i) => i === payload.index);
-      task.status = payload.status
-    }
+      const task = col.tasks.find((task, i) => i === payload.taskIndex);
+      task.status = payload.status;
+    },
   },
 });
 

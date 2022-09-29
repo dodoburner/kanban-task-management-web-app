@@ -12,7 +12,7 @@ export default function TaskModal() {
   const modalsState = useSelector((state) => state.openModals);
   const payload = modalsState.openTaskModal;
   const task = payload.task;
-  const index = payload.index;
+  const taskIndex = payload.taskIndex;
   const colIndex = payload.colIndex;
   const boards = useSelector((state) => state.boards);
   const board = boards.find((board) => board.isActive === true);
@@ -29,7 +29,13 @@ export default function TaskModal() {
   const [status, setStatus] = useState(task.status);
   const onChange = (e) => {
     setStatus(e.target.value);
-    dispatch(boardsSlice.actions.setTaskStatus({ index, colIndex, status: e.target.value }))
+    dispatch(
+      boardsSlice.actions.setTaskStatus({
+        taskIndex,
+        colIndex,
+        status: e.target.value,
+      })
+    );
   };
   return (
     <div
@@ -55,7 +61,15 @@ export default function TaskModal() {
           Subtasks ({completed} of {subtasks.length})
         </p>
         {subtasks.map((subtask, index) => {
-          return <Subtask subtask={subtask} index={index} key={index} />;
+          return (
+            <Subtask
+              subtask={subtask}
+              index={index}
+              taskIndex={taskIndex}
+              colIndex={colIndex}
+              key={index}
+            />
+          );
         })}
         <div className="select-column-container">
           <p className="current-status-text text-M">Current Status</p>

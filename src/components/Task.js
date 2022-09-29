@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import modalsSlice from "../redux/modalsSlice";
 
-export default function Task({ task, index, colIndex }) {
+export default function Task({ task, taskIndex, colIndex }) {
   const dispatch = useDispatch();
   let completed = 0;
   let subtasks = task.subtasks;
@@ -16,7 +16,7 @@ export default function Task({ task, index, colIndex }) {
     <div
       className="task"
       onClick={() => {
-        dispatch(modalsSlice.actions.openTaskModal({ task, index, colIndex }));
+        dispatch(modalsSlice.actions.openTaskModal({ task, taskIndex, colIndex }));
       }}
     >
       <p className="task-title heading-M">{task.title}</p>

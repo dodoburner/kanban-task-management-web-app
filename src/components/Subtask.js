@@ -1,15 +1,21 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import boardsSlice from "../redux/boardsSlice";
 
-export default function Subtask({ subtask, index}) {
+export default function Subtask({ index, taskIndex, colIndex }) {
   const dispatch = useDispatch();
-  const [checked, setChecked] = useState(subtask.isCompleted);
+  const boards = useSelector((state) => state.boards);
+  const board = boards.find((board) => board.isActive === true);
+  const col = board.columns.find((col, i) => i === colIndex);
+  const task = col.tasks.find((task, i) => i === taskIndex);
+  const subtask = task.subtasks.find((subtask, i) => i === index);
+  const checked = subtask.isCompleted;
 
   const onChange = (e) => {
-    setChecked(e.target.value)
-    dispatch(boardsSlice.actions.setSubtaskCompleted())
-  }
+    dispatch(
+      boardsSlice.actions.setSubtaskCompleted({ index, taskIndex, colIndex })
+    );
+  };
 
   return (
     <div className="subtask">
@@ -17,9 +23,9 @@ export default function Subtask({ subtask, index}) {
         className="subtask-checkbox"
         type="checkbox"
         checked={checked}
-        onChange={(e) => onChange(e)}
+        onChange={onChange}
       />
-      <p className={`subtask-text text-M ${ checked ? "checked" : ""}`}>
+      <p className={`subtask-text text-M ${checked ? "checked" : ""}`}>
         {subtask.title}
       </p>
     </div>
