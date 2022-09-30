@@ -15,11 +15,13 @@
   background-color: white;
   padding: 24px;
   border-radius: 6px;
+  width: 100%;
 }
 
 .task-modal-title-container {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 16px;
   margin-bottom: 24px;
 }
