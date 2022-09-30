@@ -7,23 +7,19 @@ const boardsSlice = createSlice({
   reducers: {
     addBoard: (state, action) => {
       const payload = action.payload;
-      if (payload.type === "add") {
-        const board = {
-          name: payload.name,
-          isActive: false,
-          columns: [],
-        };
-        board.columns = payload.columns.map((col) => ({
-          name: col,
-          tasks: [],
-        }));
-        state.push(board);
-      } else {
-        const board = state.find((board) => board.isActive);
-        board.name = payload.name
-        board.columns = board.columns.filter((col, i) => !payload.deleteAt.includes(i))
-        
-      }
+      const board = {
+        name: payload.name,
+        isActive: false,
+        columns: [],
+      };
+      board.columns = payload.newColumns;
+      state.push(board);
+    },
+    editBoard: (state, action) => {
+      const payload = action.payload;
+      const board = state.find((board) => board.isActive);
+      board.name = payload.name;
+      board.columns = payload.newColumns;
     },
     setBoardActive: (state, action) => {
       state.map((board, index) => {
