@@ -34,7 +34,7 @@ export default function HeaderDropdown({ setOpenDropdown }) {
           <div
             className="dropdown-board dropdown-create-board-btn"
             onClick={() => {
-              dispatch(modalsSlice.actions.toggleBoardModal());
+              dispatch(modalsSlice.actions.toggleBoardModal({ type: 'add' }));
               setOpenDropdown((state) => !state);
             }}
           >

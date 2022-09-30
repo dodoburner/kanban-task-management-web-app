@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "../styles/Header.css";
 import mobileLogo from "../assets/logo-mobile.svg";
 import addTaskMobile from "../assets/icon-add-task-mobile.svg";
@@ -8,11 +8,16 @@ import iconUp from "../assets/icon-chevron-up.svg";
 import elipsis from "../assets/icon-vertical-ellipsis.svg";
 import HeaderDropdown from "./HeaderDropdown";
 import ElipsisMenu from "./ElipsisMenu.js";
+import modalsSlice from "../redux/modalsSlice";
 
 export default function Header({ setOpenDeleteModal, setOpenElipsisMenu, openElipsisMenu }) {
+  const dispatch = useDispatch();
   const [openDropdown, setOpenDropdown] = useState(false);
   const boards = useSelector((state) => state.boards);
   const board = boards.find((board) => board.isActive);
+  const setOpenEditModal = () => {
+    dispatch(modalsSlice.actions.toggleBoardModal({ type: 'edit' }))
+  }
 
   return (
     <header>
@@ -43,7 +48,7 @@ export default function Header({ setOpenDeleteModal, setOpenElipsisMenu, openEli
         alt="menu for deleting or editing board"
       />
 
-      {openElipsisMenu ? <ElipsisMenu type="board" setOpenDeleteModal={setOpenDeleteModal} /> : null}
+      {openElipsisMenu ? <ElipsisMenu type="board" setOpenEditModal={setOpenEditModal} setOpenDeleteModal={setOpenDeleteModal} /> : null}
       {openDropdown ? (
         <HeaderDropdown
           setOpenDropdown={setOpenDropdown}

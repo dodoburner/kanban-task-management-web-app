@@ -1,29 +1,43 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import crossIcon from "../assets/icon-cross.svg";
 import boardsSlice from "../redux/boardsSlice";
 import modalsSlice from "../redux/modalsSlice";
 import "../styles/BoardModals.css";
 
-export default function AddEditBoardModal() {
+export default function AddEditBoardModal({ type }) {
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
   const [name, setName] = useState("");
-  const [columns, setColumns] = useState(["Todo", "Doing"]);
+  const [columns, setColumns] = useState([]);
   const [isValid, setIsValid] = useState(true);
   const dispatch = useDispatch();
+  const board = useSelector((state) => state.boards).find(
+    (board) => board.isActive
+  );
+
+  if (type === "edit" && isFirstLoad) {
+    setColumns(
+      board.columns.map((col) => {
+        return col.name;
+      })
+    );
+    setName(board.name);
+    setIsFirstLoad(false);
+  } else if (isFirstLoad) {
+    setColumns(["Todo", "Doing"]);
+    setIsFirstLoad(false);
+  }
 
   const validate = () => {
     setIsValid(false);
-
     if (name.length === 0) {
       return false;
     }
-
     columns.forEach((column) => {
       if (column.length === 0) {
         return false;
       }
     });
-
     setIsValid(true);
     return true;
   };
@@ -36,6 +50,18 @@ export default function AddEditBoardModal() {
     });
   };
 
+  const [deleteAt, setDeleteAt] = useState([]);
+  const onDelete = (index) => {
+    setColumns((prevState) => prevState.filter((el, i) => i !== index));
+  };
+
+  const onDeleteFromStore = (index) => {
+    if (deleteAt.includes(index)) {
+      index = Math.max(...deleteAt) + 1
+    }
+    setDeleteAt((prevState) => [...prevState, index])
+  }
+
   return (
     <div
       className="modal-container dimmed"
@@ -43,11 +69,11 @@ export default function AddEditBoardModal() {
         if (e.target !== e.currentTarget) {
           return;
         }
-        dispatch(modalsSlice.actions.toggleBoardModal());
+        dispatch(modalsSlice.actions.toggleBoardModal({ type: "" }));
       }}
     >
       <div className="modal">
-        <h3>Add New Board</h3>
+        <h3>{type === "edit" ? "Edit" : "Add new"} board</h3>
         <label htmlFor="board-name-input">Board Name</label>
         <div className="input-container">
           <input
@@ -88,10 +114,10 @@ export default function AddEditBoardModal() {
                   src={crossIcon}
                   alt="delete-column-icon"
                   onClick={() => {
-                    setColumns((prevState) => {
-                      const newState = prevState.filter((el, i) => i !== index);
-                      return newState;
-                    });
+                    onDelete(index);
+                    if (type === 'edit') {
+                      onDeleteFromStore(index)
+                    }
                   }}
                 />
               </div>
@@ -112,13 +138,16 @@ export default function AddEditBoardModal() {
             const isValid = validate();
 
             if (isValid === true) {
-              dispatch(boardsSlice.actions.addBoard({ name, columns }));
-              dispatch(modalsSlice.actions.toggleBoardModal());
+              console.log(deleteAt);
+              dispatch(
+                boardsSlice.actions.addBoard({ name, columns, type, deleteAt })
+              );
+              dispatch(modalsSlice.actions.toggleBoardModal({ type: "" }));
             }
           }}
           className="add-column-btn"
         >
-          Create New Board
+          {type === "add" ? "Create New Board" : "Save Changes"}
         </button>
       </div>
     </div>

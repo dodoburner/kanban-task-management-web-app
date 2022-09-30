@@ -3,7 +3,10 @@ import { createSlice } from "@reduxjs/toolkit";
 const modalsSlice = createSlice({
   name: "modals",
   initialState: {
-    openBoardModal: false,
+    openBoardModal: {
+      isOpen: false,
+      type: ''
+    },
     openTaskModal: {
       isOpen: false,
       taskIndex: null,
@@ -11,8 +14,9 @@ const modalsSlice = createSlice({
     },
   },
   reducers: {
-    toggleBoardModal: (state) => {
-      state.openBoardModal = !state.openBoardModal;
+    toggleBoardModal: (state, action) => {
+      state.openBoardModal.isOpen = !state.openBoardModal.isOpen;
+      state.openBoardModal.type = action.payload.type
     },
     openTaskModal: (state, action) => {
       state.openTaskModal.isOpen = !state.openTaskModal.isOpen;

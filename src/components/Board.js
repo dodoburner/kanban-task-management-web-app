@@ -43,7 +43,7 @@ export default function Board({ openDeleteModal, setOpenDeleteModal, setOpenElip
         </>
       )}
 
-      {openBoardModal ? <AddEditBoardModal /> : null}
+      {openBoardModal.isOpen ? <AddEditBoardModal type={openBoardModal.type}/> : null}
       {openTaskModal.isOpen ? <TaskModal /> : null}
       {openDeleteModal ? (
         <DeleteModal
