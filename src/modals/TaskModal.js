@@ -51,13 +51,18 @@ export default function TaskModal() {
   };
 
   const [openElipsisMenu, setOpenElipsisMenu] = useState(false);
-  const onEditClick = () => {
-    console.log("edit me");
-  };
-
+  const [openEditModal, setOpenEditModal] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
-  const onDeleteClick = () => {
-    setOpenDeleteModal(true)
+
+  const onDeleteBtnClick = (e) => {
+    console.log(e.target.textContent)
+    if (e.target.textContent === "Delete") {
+      dispatch(boardsSlice.actions.deleteTask({ taskIndex, colIndex }))
+      dispatch(modalsSlice.actions.closeTaskModal());
+    } else {
+      setOpenDeleteModal(false)
+      setOpenElipsisMenu(false)
+    }
   };
 
   return (
@@ -73,8 +78,8 @@ export default function TaskModal() {
           />
           {openElipsisMenu ? (
             <ElipsisMenu
-              onEditClick={onEditClick}
-              onDeleteClick={onDeleteClick}
+              setOpenEditModal={setOpenEditModal}
+              setOpenDeleteModal={setOpenDeleteModal}
               type="Task"
             />
           ) : null}
@@ -109,7 +114,13 @@ export default function TaskModal() {
         </div>
       </div>
 
-      {openDeleteModal ? <DeleteModal type="task" title={task.title} /> : null}
+      {openDeleteModal ? (
+        <DeleteModal
+          onDeleteBtnClick={onDeleteBtnClick}
+          type="task"
+          title={task.title}
+        />
+      ) : null}
     </div>
   );
 }
