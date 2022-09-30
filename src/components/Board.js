@@ -7,7 +7,7 @@ import Column from "./Column";
 import DeleteModal from "../modals/DeleteModal";
 import boardsSlice from "../redux/boardsSlice";
 
-export default function Board({ openDeleteModal, setOpenDeleteModal }) {
+export default function Board({ openDeleteModal, setOpenDeleteModal, setOpenElipsisMenu }) {
   const dispatch = useDispatch();
   const modalsState = useSelector((state) => state.openModals);
   const openBoardModal = modalsState.openBoardModal;
@@ -21,8 +21,10 @@ export default function Board({ openDeleteModal, setOpenDeleteModal }) {
     if (e.target.textContent === "Delete") {
       dispatch(boardsSlice.actions.deleteBoard())
       setOpenDeleteModal(false)
+      setOpenElipsisMenu(false)
     } else {
       setOpenDeleteModal(false)
+      setOpenElipsisMenu(false)
     }
   };
 

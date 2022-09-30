@@ -11,13 +11,19 @@ function App() {
   const activeBoard = boards.find((board) => board.isActive);
   if (!activeBoard) dispatch(boardsSlice.actions.setBoardActive({ index: 0 }));
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [openElipsisMenu, setOpenElipsisMenu] = useState(false);
 
   return (
     <div className="app">
-      <Header setOpenDeleteModal={setOpenDeleteModal} />
+      <Header
+        setOpenDeleteModal={setOpenDeleteModal}
+        openElipsisMenu={openElipsisMenu}
+        setOpenElipsisMenu={setOpenElipsisMenu}
+      />
       <Board
         openDeleteModal={openDeleteModal}
         setOpenDeleteModal={setOpenDeleteModal}
+        setOpenElipsisMenu={setOpenElipsisMenu}
       />
     </div>
   );

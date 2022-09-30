@@ -9,9 +9,8 @@ import elipsis from "../assets/icon-vertical-ellipsis.svg";
 import HeaderDropdown from "./HeaderDropdown";
 import ElipsisMenu from "./ElipsisMenu.js";
 
-export default function Header({ setOpenDeleteModal }) {
+export default function Header({ setOpenDeleteModal, setOpenElipsisMenu, openElipsisMenu }) {
   const [openDropdown, setOpenDropdown] = useState(false);
-  const [openElipsisMenu, setOpenElipsisMenu] = useState(false);
   const boards = useSelector((state) => state.boards);
   const board = boards.find((board) => board.isActive);
 
