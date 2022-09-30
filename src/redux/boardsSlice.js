@@ -41,7 +41,7 @@ const boardsSlice = createSlice({
       const board = state.find((board) => board.isActive === true);
       const columns = board.columns;
       const col = columns.find((col, i) => i === payload.colIndex);
-      if (columns.indexOf(col) === payload.colIndex) {
+      if (columns.indexOf(col) === payload.newColIndex) {
         return
       }
       const task = col.tasks.find((task, i) => i === payload.taskIndex);
