@@ -11,19 +11,72 @@
   padding: 24px 16px;
 }
 
-.task-modal {
+.task-modal,
+.delete-modal {
   background-color: white;
   padding: 24px;
   border-radius: 6px;
   width: 100%;
 }
 
+.delete-modal h3 {
+  color: #ea5555;
+}
+
+.delete-modal p {
+  color: #828fa3;
+  margin: 24px 0;
+}
+
+.btn {
+  width: 100%;
+  border-radius: 20px;
+  padding: 8px;
+  height: 40px;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 23px;
+}
+
+.delete-btn {
+  background-color: #EA5555;
+  color: white;
+  margin-bottom: 16px;
+}
+
+.cancel-btn {
+  background-color: rgba(99, 95, 199, 0.1);
+  color: #635FC7;
+}
+
 .task-modal-title-container {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
   margin-bottom: 24px;
+}
+
+.elipsis-menu {
+  position: absolute;
+  right: -10%;
+  top: 150%;
+  padding: 16px;
+  width: 40%;
+  background-color: white;
+  color: #828fa3;
+  box-shadow: 0px 10px 20px rgba(54, 78, 126, 0.25);
+  border-radius: 8px;
+}
+
+.elipsis-menu p {
+  cursor: pointer;
+}
+
+.elipsis-menu-red {
+  color: #ea5555;
+  margin-top: 16px;
 }
 
 .task-modal-elipsis {
@@ -69,7 +122,7 @@
   margin-bottom: 8px;
 }
 
-.select-column {
+.select-status {
   width: 100%;
   padding: 8px 16px;
   border: 1px solid #828fa340;

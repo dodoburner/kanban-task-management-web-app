@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../styles/TaskModals.css";
 import Subtask from "../components/Subtask";
+import ElipsisMenu from "../components/ElipsisMenu";
+import DeleteModal from "./DeleteModal";
 import elipsis from "../assets/icon-vertical-ellipsis.svg";
 import modalsSlice from "../redux/modalsSlice";
 import boardsSlice from "../redux/boardsSlice";
@@ -48,16 +50,34 @@ export default function TaskModal() {
     dispatch(modalsSlice.actions.closeTaskModal());
   };
 
+  const [openElipsisMenu, setOpenElipsisMenu] = useState(false);
+  const onEditClick = () => {
+    console.log("edit me");
+  };
+
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const onDeleteClick = () => {
+    setOpenDeleteModal(true)
+  };
+
   return (
     <div className="modal-container" onClick={onClose}>
-      <div className="task-modal">
+      <div className={`task-modal ${openDeleteModal ? "none" : ""}`}>
         <div className="task-modal-title-container">
           <p className="heading-L">{task.title}</p>
           <img
             className="task-modal-elipsis"
             src={elipsis}
             alt="task options btn"
+            onClick={() => setOpenElipsisMenu((prevState) => !prevState)}
           />
+          {openElipsisMenu ? (
+            <ElipsisMenu
+              onEditClick={onEditClick}
+              onDeleteClick={onDeleteClick}
+              type="Task"
+            />
+          ) : null}
         </div>
         <p className="task-description text-L">{task.description}</p>
 
@@ -78,7 +98,7 @@ export default function TaskModal() {
         <div className="select-column-container">
           <p className="current-status-text text-M">Current Status</p>
           <select
-            className="select-column text-L"
+            className="select-status text-L"
             value={status}
             onChange={onChange}
           >
@@ -88,6 +108,8 @@ export default function TaskModal() {
           </select>
         </div>
       </div>
+
+      {openDeleteModal ? <DeleteModal type="task" title={task.title} /> : null}
     </div>
   );
 }

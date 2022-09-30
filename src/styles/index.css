@@ -16,3 +16,7 @@ button,
 input {
   cursor: pointer;
 }
+
+.none {
+  display: none;
+}
