@@ -56,7 +56,6 @@ export default function AddEditBoardModal({ type }) {
     setNewColumns((prevState) => prevState.filter((el) => el.id !== id));
   };
 
-
   const onSubmit = (type) => {
     if (type === "add") {
       dispatch(boardsSlice.actions.addBoard({ name, newColumns }));
@@ -139,10 +138,7 @@ export default function AddEditBoardModal({ type }) {
         <button
           onClick={() => {
             const isValid = validate();
-
-            if (isValid === true) {
-              onSubmit(type);
-            }
+            if (isValid === true) onSubmit(type);
           }}
           className="add-column-btn"
         >
