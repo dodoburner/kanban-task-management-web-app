@@ -30,7 +30,7 @@ const boardsSlice = createSlice({
     },
     setSubtaskCompleted: (state, action) => {
       const payload = action.payload;
-      const board = state.find((board) => board.isActive === true);
+      const board = state.find((board) => board.isActive);
       const col = board.columns.find((col, i) => i === payload.colIndex);
       const task = col.tasks.find((task, i) => i === payload.taskIndex);
       const subtask = task.subtasks.find((subtask, i) => i === payload.index);
@@ -38,26 +38,29 @@ const boardsSlice = createSlice({
     },
     setTaskStatus: (state, action) => {
       const payload = action.payload;
-      const board = state.find((board) => board.isActive === true);
+      const board = state.find((board) => board.isActive);
       const columns = board.columns;
       const col = columns.find((col, i) => i === payload.colIndex);
       if (columns.indexOf(col) === payload.newColIndex) {
-        return
+        return;
       }
       const task = col.tasks.find((task, i) => i === payload.taskIndex);
       task.status = payload.status;
-      col.tasks = col.tasks.filter((task, i) => i !== payload.taskIndex)
-      const newCol = columns.find((col, i) => i === payload.newColIndex)
-      newCol.tasks.push(task)
+      col.tasks = col.tasks.filter((task, i) => i !== payload.taskIndex);
+      const newCol = columns.find((col, i) => i === payload.newColIndex);
+      newCol.tasks.push(task);
     },
     deleteTask: (state, action) => {
       const payload = action.payload;
-      const board = state.find((board) => board.isActive === true);
+      const board = state.find((board) => board.isActive);
       const columns = board.columns;
       const col = columns.find((col, i) => i === payload.colIndex);
       col.tasks = col.tasks.filter((task, i) => i !== payload.taskIndex);
-
-    }
+    },
+    deleteBoard: (state) => {
+      const board = state.find((board) => board.isActive);
+      state.splice(state.indexOf(board), 1)
+    },
   },
 });
 

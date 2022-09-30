@@ -26,7 +26,8 @@ export default function HeaderDropdown({ setOpenDropdown }) {
                   dispatch(boardsSlice.actions.setBoardActive({ index }));
                 }}
               >
-                <img className="filter-white" src={boardIcon} /> {board.name}
+                <img className="filter-white" src={boardIcon} alt="board" />{" "}
+                {board.name}
               </div>
             );
           })}
@@ -37,17 +38,18 @@ export default function HeaderDropdown({ setOpenDropdown }) {
               setOpenDropdown((state) => !state);
             }}
           >
-            <img className="filter-purple" src={boardIcon} /> + Create New Board
+            <img className="filter-purple" alt="board" src={boardIcon} /> +
+            Create New Board
           </div>
         </div>
 
         <div className="light-toggle">
-          <img src={lightIcon} />
+          <img src={lightIcon} alt="sun indicating light mode" />
           <label className="switch">
             <input type="checkbox" />
             <span className="slider round"></span>
           </label>
-          <img src={darkIcon} />
+          <img src={darkIcon} alt="moon indicating dark mode" />
         </div>
       </div>
     </div>

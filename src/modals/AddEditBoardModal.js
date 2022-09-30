@@ -38,7 +38,7 @@ export default function AddEditBoardModal() {
 
   return (
     <div
-      className="modal-container"
+      className="modal-container dimmed"
       onClick={(e) => {
         if (e.target !== e.currentTarget) {
           return;

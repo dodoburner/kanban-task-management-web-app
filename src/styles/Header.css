@@ -6,6 +6,11 @@ header {
   position: relative;
 }
 
+header .elipsis-menu {
+  top: 90%;
+  right: 2%;
+}
+
 .logo {
   margin-right: 16px;
 }
@@ -33,6 +38,7 @@ header {
 
 .elipsis {
   height: 16px;
+  cursor: pointer;
 }
 
 /* dropdown modal */

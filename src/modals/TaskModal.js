@@ -55,18 +55,20 @@ export default function TaskModal() {
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
   const onDeleteBtnClick = (e) => {
-    console.log(e.target.textContent)
     if (e.target.textContent === "Delete") {
-      dispatch(boardsSlice.actions.deleteTask({ taskIndex, colIndex }))
+      dispatch(boardsSlice.actions.deleteTask({ taskIndex, colIndex }));
       dispatch(modalsSlice.actions.closeTaskModal());
     } else {
-      setOpenDeleteModal(false)
-      setOpenElipsisMenu(false)
+      setOpenDeleteModal(false);
+      setOpenElipsisMenu(false);
     }
   };
 
   return (
-    <div className="modal-container" onClick={onClose}>
+    <div
+      className={`modal-container ${openDeleteModal ? "" : "dimmed"}`}
+      onClick={onClose}
+    >
       <div className={`task-modal ${openDeleteModal ? "none" : ""}`}>
         <div className="task-modal-title-container">
           <p className="heading-L">{task.title}</p>
