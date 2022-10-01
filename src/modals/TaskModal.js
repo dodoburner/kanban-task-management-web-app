@@ -5,13 +5,15 @@ import Subtask from "../components/Subtask";
 import ElipsisMenu from "../components/ElipsisMenu";
 import DeleteModal from "./DeleteModal";
 import elipsis from "../assets/icon-vertical-ellipsis.svg";
-import modalsSlice from "../redux/modalsSlice";
+import openModalsSlice from "../redux/openModalsSlice";
 import boardsSlice from "../redux/boardsSlice";
 
 export default function TaskModal() {
   const dispatch = useDispatch();
   const modalsState = useSelector((state) => state.openModals);
-  const payload = modalsState.openTaskModal;
+  const toggleElipsisMenu = modalsState.toggleElipsisMenu;
+  const toggleDeleteModal = modalsState.toggleDeleteModal;
+  const payload = modalsState.toggleTaskModal;
   const taskIndex = payload.taskIndex;
   const colIndex = payload.colIndex;
   const boards = useSelector((state) => state.boards);
@@ -47,40 +49,48 @@ export default function TaskModal() {
         status,
       })
     );
-    dispatch(modalsSlice.actions.closeTaskModal());
+    dispatch(openModalsSlice.actions.closeTaskModal());
   };
 
-  const [openElipsisMenu, setOpenElipsisMenu] = useState(false);
-  const [openEditModal, setOpenEditModal] = useState(false);
-  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  // const [openElipsisMenu, setOpenElipsisMenu] = useState(false);
+  // const [openEditModal, setOpenEditModal] = useState(false);
+  // const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
   const onDeleteBtnClick = (e) => {
     if (e.target.textContent === "Delete") {
       dispatch(boardsSlice.actions.deleteTask({ taskIndex, colIndex }));
-      dispatch(modalsSlice.actions.closeTaskModal());
+      dispatch(openModalsSlice.actions.closeTaskModal());
     } else {
-      setOpenDeleteModal(false);
-      setOpenElipsisMenu(false);
+      // setOpenDeleteModal(false);
+      
+      // setOpenElipsisMenu(false);
+      dispatch(openModalsSlice.actions.toggleElipsisMenu({ type: "task" }))
+      dispatch(openModalsSlice.actions.toggleDeleteModal({ type: ""}))
+
     }
   };
 
+  const setOpenDeleteModal = () => {
+    dispatch(openModalsSlice.actions.toggleDeleteModal({ type: "task" }))
+  }
+
   return (
     <div
-      className={`modal-container ${openDeleteModal ? "" : "dimmed"}`}
+      className={`modal-container ${toggleDeleteModal.isOpen ? "" : "dimmed"}`}
       onClick={onClose}
     >
-      <div className={`task-modal ${openDeleteModal ? "none" : ""}`}>
+      <div className={`task-modal ${toggleDeleteModal.isOpen ? "none" : ""}`}>
         <div className="task-modal-title-container">
           <p className="heading-L">{task.title}</p>
           <img
             className="task-modal-elipsis"
             src={elipsis}
             alt="task options btn"
-            onClick={() => setOpenElipsisMenu((prevState) => !prevState)}
+            onClick={() => dispatch(openModalsSlice.actions.toggleElipsisMenu({ type: "task"}))}
           />
-          {openElipsisMenu ? (
+          {toggleElipsisMenu.isOpen ? (
             <ElipsisMenu
-              setOpenEditModal={setOpenEditModal}
+              // setOpenEditModal={setOpenEditModal}
               setOpenDeleteModal={setOpenDeleteModal}
               type="Task"
             />
@@ -116,7 +126,7 @@ export default function TaskModal() {
         </div>
       </div>
 
-      {openDeleteModal ? (
+      {toggleDeleteModal.isOpen ? (
         <DeleteModal
           onDeleteBtnClick={onDeleteBtnClick}
           type="task"

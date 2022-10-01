@@ -6,12 +6,14 @@ import TaskModal from "../modals/TaskModal";
 import Column from "./Column";
 import DeleteModal from "../modals/DeleteModal";
 import boardsSlice from "../redux/boardsSlice";
+import openModalsSlice from "../redux/openModalsSlice";
 
-export default function Board({ openDeleteModal, setOpenDeleteModal, setOpenElipsisMenu }) {
+export default function Board() {
   const dispatch = useDispatch();
   const modalsState = useSelector((state) => state.openModals);
-  const openBoardModal = modalsState.openBoardModal;
-  const openTaskModal = modalsState.openTaskModal;
+  const toggleBoardModal = modalsState.toggleBoardModal;
+  const toggleTaskModal = modalsState.toggleTaskModal;
+  const toggleDeleteModal = modalsState.toggleDeleteModal;
 
   const boards = useSelector((state) => state.boards);
   const board = boards.find((board) => board.isActive === true);
@@ -19,12 +21,13 @@ export default function Board({ openDeleteModal, setOpenDeleteModal, setOpenElip
 
   const onDeleteBtnClick = (e) => {
     if (e.target.textContent === "Delete") {
-      dispatch(boardsSlice.actions.deleteBoard())
-      setOpenDeleteModal(false)
-      setOpenElipsisMenu(false)
+      dispatch(boardsSlice.actions.deleteBoard());
+      dispatch(boardsSlice.actions.setBoardActive({ index: 0 }));
+      dispatch(openModalsSlice.actions.toggleDeleteModal({ type: ""}));
+      dispatch(openModalsSlice.actions.toggleElipsisMenu({ type: ""}));
     } else {
-      setOpenDeleteModal(false)
-      setOpenElipsisMenu(false)
+      dispatch(openModalsSlice.actions.toggleDeleteModal({ type: ""}));
+      dispatch(openModalsSlice.actions.toggleElipsisMenu({ type: ""}));
     }
   };
 
@@ -43,9 +46,11 @@ export default function Board({ openDeleteModal, setOpenDeleteModal, setOpenElip
         </>
       )}
 
-      {openBoardModal.isOpen ? <AddEditBoardModal type={openBoardModal.type}/> : null}
-      {openTaskModal.isOpen ? <TaskModal /> : null}
-      {openDeleteModal ? (
+      {toggleBoardModal.isOpen ? (
+        <AddEditBoardModal type={toggleBoardModal.type} />
+      ) : null}
+      {toggleTaskModal.isOpen ? <TaskModal /> : null}
+      {toggleDeleteModal.isOpen && toggleDeleteModal.type === "board" ? (
         <DeleteModal
           type="board"
           title={board.name}

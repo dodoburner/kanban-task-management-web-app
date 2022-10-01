@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import modalsSlice from "../redux/modalsSlice";
+import openModalsSlice from "../redux/openModalsSlice";
 
 export default function Task({ taskIndex, colIndex }) {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ export default function Task({ taskIndex, colIndex }) {
     <div
       className="task"
       onClick={() => {
-        dispatch(modalsSlice.actions.openTaskModal({ taskIndex, colIndex }));
+        dispatch(openModalsSlice.actions.openTaskModal({ taskIndex, colIndex }));
       }}
     >
       <p className="task-title heading-M">{task.title}</p>

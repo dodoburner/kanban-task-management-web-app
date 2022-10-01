@@ -4,7 +4,7 @@ import boardIcon from "../assets/icon-board.svg";
 import darkIcon from "../assets/icon-dark-theme.svg";
 import lightIcon from "../assets/icon-light-theme.svg";
 import boardsSlice from "../redux/boardsSlice";
-import modalsSlice from "../redux/modalsSlice";
+import modalsSlice from "../redux/openModalsSlice";
 
 export default function HeaderDropdown({ setOpenDropdown }) {
   const dispatch = useDispatch();

@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import boardsSlice from "./boardsSlice";
-import modalsSlice from "./modalsSlice";
+import openModalsSlice from "./openModalsSlice";
 
 const store = configureStore({
   reducer: {
-    openModals: modalsSlice.reducer,
+    openModals: openModalsSlice.reducer,
     boards: boardsSlice.reducer,
   }
 })
