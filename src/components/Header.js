@@ -19,9 +19,11 @@ export default function Header() {
   const toggleElipsisMenu = openModals.toggleElipsisMenu;
   const setOpenEditModal = () => {
     dispatch(openModalsSlice.actions.toggleBoardModal({ type: "edit" }));
+    dispatch(openModalsSlice.actions.toggleElipsisMenu({ type: ""}));
   };
   const setOpenDeleteModal = () => {
-    dispatch(openModalsSlice.actions.toggleDeleteModal({ type: "board"}));
+    dispatch(openModalsSlice.actions.toggleDeleteModal({ type: "board" }));
+    dispatch(openModalsSlice.actions.toggleElipsisMenu({ type: ""}));
   };
 
   return (

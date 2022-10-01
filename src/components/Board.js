@@ -24,10 +24,8 @@ export default function Board() {
       dispatch(boardsSlice.actions.deleteBoard());
       dispatch(boardsSlice.actions.setBoardActive({ index: 0 }));
       dispatch(openModalsSlice.actions.toggleDeleteModal({ type: ""}));
-      dispatch(openModalsSlice.actions.toggleElipsisMenu({ type: ""}));
     } else {
       dispatch(openModalsSlice.actions.toggleDeleteModal({ type: ""}));
-      dispatch(openModalsSlice.actions.toggleElipsisMenu({ type: ""}));
     }
   };
 

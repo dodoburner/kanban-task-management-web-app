@@ -52,27 +52,19 @@ export default function TaskModal() {
     dispatch(openModalsSlice.actions.closeTaskModal());
   };
 
-  // const [openElipsisMenu, setOpenElipsisMenu] = useState(false);
-  // const [openEditModal, setOpenEditModal] = useState(false);
-  // const [openDeleteModal, setOpenDeleteModal] = useState(false);
-
   const onDeleteBtnClick = (e) => {
     if (e.target.textContent === "Delete") {
       dispatch(boardsSlice.actions.deleteTask({ taskIndex, colIndex }));
       dispatch(openModalsSlice.actions.closeTaskModal());
     } else {
-      // setOpenDeleteModal(false);
-      
-      // setOpenElipsisMenu(false);
-      dispatch(openModalsSlice.actions.toggleElipsisMenu({ type: "task" }))
-      dispatch(openModalsSlice.actions.toggleDeleteModal({ type: ""}))
-
+      dispatch(openModalsSlice.actions.toggleDeleteModal({ type: "" }));
     }
   };
 
   const setOpenDeleteModal = () => {
-    dispatch(openModalsSlice.actions.toggleDeleteModal({ type: "task" }))
-  }
+    dispatch(openModalsSlice.actions.toggleDeleteModal({ type: "task" }));
+    dispatch(openModalsSlice.actions.toggleElipsisMenu({ type: "" }));
+  };
 
   return (
     <div
@@ -86,7 +78,11 @@ export default function TaskModal() {
             className="task-modal-elipsis"
             src={elipsis}
             alt="task options btn"
-            onClick={() => dispatch(openModalsSlice.actions.toggleElipsisMenu({ type: "task"}))}
+            onClick={() =>
+              dispatch(
+                openModalsSlice.actions.toggleElipsisMenu({ type: "task" })
+              )
+            }
           />
           {toggleElipsisMenu.isOpen ? (
             <ElipsisMenu
