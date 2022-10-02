@@ -7,7 +7,7 @@ import boardsSlice from "../redux/boardsSlice";
 export default function AddEditTaskModal({ type, setIsAddTaskModalOpen }) {
   const dispatch = useDispatch();
   const [isValid, setIsValid] = useState(true);
-  const [name, setName] = useState("");
+  const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const board = useSelector((state) => state.boards).find(
     (board) => board.isActive
@@ -21,7 +21,7 @@ export default function AddEditTaskModal({ type, setIsAddTaskModalOpen }) {
 
   const validate = () => {
     setIsValid(false);
-    if (!name.trim() || !description.trim()) {
+    if (!title.trim() || !description.trim()) {
       return false;
     }
     subtasks.forEach((subtask) => {
@@ -54,7 +54,7 @@ export default function AddEditTaskModal({ type, setIsAddTaskModalOpen }) {
   const onSubmit = (type) => {
     dispatch(
       boardsSlice.actions.addTask({
-        name,
+        title,
         description,
         subtasks,
         status,
@@ -78,14 +78,14 @@ export default function AddEditTaskModal({ type, setIsAddTaskModalOpen }) {
         <label htmlFor="task-name-input">Task Name</label>
         <div className="input-container">
           <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
             id="task-name-input"
             type="text"
             placeholder="e.g. Take coffee break"
-            className={!isValid && !name.trim() ? "red-border" : ""}
+            className={!isValid && !title.trim() ? "red-border" : ""}
           />
-          {!isValid && !name.trim() ? (
+          {!isValid && !title.trim() ? (
             <span className="cant-be-empty-span text-L"> Can't be empty</span>
           ) : null}
         </div>
@@ -168,6 +168,7 @@ export default function AddEditTaskModal({ type, setIsAddTaskModalOpen }) {
           onClick={() => {
             const isValid = validate();
             if (isValid) onSubmit(type);
+            setIsAddTaskModalOpen(false)
           }}
           className="create-btn"
         >
