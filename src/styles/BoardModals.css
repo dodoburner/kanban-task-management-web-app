@@ -2,14 +2,12 @@
   background-color: white;
   width: 100%;
   padding: 24px;
-  padding-bottom: 0;
   border-radius: 6px;
 }
 
 .modal button {
   width: 100%;
   height: 40px;
-  margin-bottom: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,7 +15,7 @@
 }
 
 .btn-light {
-  color: #635FC7;
+  color: #635fc7;
   background: rgba(99, 95, 199, 0.1);
 }
 
@@ -31,7 +29,7 @@
   font-weight: 700;
   font-size: 12px;
   line-height: 15px;
-  color: #828FA3;
+  color: #828fa3;
 }
 
 .modal-column {
@@ -45,7 +43,8 @@
   cursor: pointer;
 }
 
-.modal input {
+.modal input,
+textarea {
   height: 40px;
   width: 100%;
   padding: 8px 16px;
@@ -55,12 +54,19 @@
   font-size: 13px;
 }
 
-#board-name-input {
+textarea {
+  height: 135px;
+  margin-bottom: 24px;
+}
+
+#board-name-input,
+#task-name-input {
   margin-bottom: 24px;
   width: 100%;
 }
 
-#board-name-input::placeholder {
+input::placeholder,
+textarea::placeholder {
   opacity: 0.25;
 }
 
@@ -71,7 +77,7 @@
 
 .cant-be-empty-span {
   position: absolute;
-  color: #EA5555;
+  color: #ea5555;
   top: 8px;
   right: 16px;
   width: fit-content;
@@ -79,6 +85,5 @@
 }
 
 .red-border {
-  border-color: #EA5555 !important;
+  border-color: #ea5555 !important;
 }
-

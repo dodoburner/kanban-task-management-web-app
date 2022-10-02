@@ -31,11 +31,11 @@ export default function AddEditBoardModal({ type }) {
 
   const validate = () => {
     setIsValid(false);
-    if (name.length === 0) {
+    if (!name.trim()) {
       return false;
     }
     newColumns.forEach((column) => {
-      if (column.name.length === 0) {
+      if (!column.name.trim()) {
         return false;
       }
     });
@@ -83,13 +83,13 @@ export default function AddEditBoardModal({ type }) {
         <div className="input-container">
           <input
             value={name}
-            onChange={(e) => setName(e.target.value.trim())}
+            onChange={(e) => setName(e.target.value)}
             id="board-name-input"
             type="text"
             placeholder="e.g. Web Design"
-            className={!isValid && !name ? "red-border" : ""}
+            className={!isValid && !name.trim() ? "red-border" : ""}
           />
-          {!isValid && !name ? (
+          {!isValid && !name.trim() ? (
             <span className="cant-be-empty-span text-L"> Can't be empty</span>
           ) : null}
         </div>
@@ -102,13 +102,13 @@ export default function AddEditBoardModal({ type }) {
                 <div className="input-container">
                   <input
                     onChange={(e) => {
-                      onChange(column.id, e.target.value.trim());
+                      onChange(column.id, e.target.value);
                     }}
                     type="text"
                     value={column.name}
-                    className={!isValid && !column.name ? "red-border" : ""}
+                    className={!isValid && !column.name.trim() ? "red-border" : ""}
                   />
-                  {!isValid && !column.name ? (
+                  {!isValid && !column.name.trim() ? (
                     <span className="cant-be-empty-span text-L">
                       {" "}
                       Can't be empty
@@ -140,7 +140,7 @@ export default function AddEditBoardModal({ type }) {
             const isValid = validate();
             if (isValid === true) onSubmit(type);
           }}
-          className="add-column-btn"
+          className="create-btn"
         >
           {type === "add" ? "Create New Board" : "Save Changes"}
         </button>

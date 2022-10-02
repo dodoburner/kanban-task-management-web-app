@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import crossIcon from "../assets/icon-cross.svg";
 import boardsSlice from "../redux/boardsSlice";
 
-export default function AddEditTaskModal({ type }) {
+export default function AddEditTaskModal({ type, setIsAddTaskModalOpen }) {
   const dispatch = useDispatch();
   const [isValid, setIsValid] = useState(true);
   const [name, setName] = useState("");
@@ -21,11 +21,11 @@ export default function AddEditTaskModal({ type }) {
 
   const validate = () => {
     setIsValid(false);
-    if (!name.length || !description) {
+    if (!name.trim() || !description.trim()) {
       return false;
     }
     subtasks.forEach((subtask) => {
-      if (!subtask.name) {
+      if (!subtask.name.trim()) {
         return false;
       }
     });
@@ -51,26 +51,41 @@ export default function AddEditTaskModal({ type }) {
     setColIndex(e.target.selectedIndex);
   };
 
-
   const onSubmit = (type) => {
-    dispatch(boardsSlice.actions.addTask({ name, description, subtasks, status, colIndex}))
+    dispatch(
+      boardsSlice.actions.addTask({
+        name,
+        description,
+        subtasks,
+        status,
+        colIndex,
+      })
+    );
   };
 
   return (
-    <div className="modal-container dimmed">
+    <div
+      className="modal-container dimmed"
+      onClick={(e) => {
+        if (e.target !== e.currentTarget) {
+          return;
+        }
+        setIsAddTaskModalOpen(false)
+      }}
+    >
       <div className="modal">
         <h3>{type === "edit" ? "Edit" : "Add new"} tasks</h3>
         <label htmlFor="task-name-input">Task Name</label>
         <div className="input-container">
           <input
             value={name}
-            onChange={(e) => setName(e.target.value.trim())}
+            onChange={(e) => setName(e.target.value)}
             id="task-name-input"
             type="text"
             placeholder="e.g. Take coffee break"
-            className={!isValid && !name ? "red-border" : ""}
+            className={!isValid && !name.trim() ? "red-border" : ""}
           />
-          {!isValid && !name ? (
+          {!isValid && !name.trim() ? (
             <span className="cant-be-empty-span text-L"> Can't be empty</span>
           ) : null}
         </div>
@@ -79,14 +94,14 @@ export default function AddEditTaskModal({ type }) {
         <div className="description-container">
           <textarea
             value={description}
-            onChange={(e) => setDescription(e.target.value.trim())}
+            onChange={(e) => setDescription(e.target.value)}
             id="task-description-input"
             placeholder="e.g. It's always good to take a break. This 
             15 minute break will  recharge the batteries 
             a little."
-            className={!isValid && !description ? "red-border" : ""}
+            className={!isValid && !description.trim() ? "red-border" : ""}
           />
-          {!isValid && !description ? (
+          {!isValid && !description.trim() ? (
             <span className="cant-be-empty-span text-L"> Can't be empty</span>
           ) : null}
         </div>
@@ -99,13 +114,13 @@ export default function AddEditTaskModal({ type }) {
                 <div className="input-container">
                   <input
                     onChange={(e) => {
-                      onChangeSubtasks(subtask.id, e.target.value.trim());
+                      onChangeSubtasks(subtask.id, e.target.value);
                     }}
                     type="text"
                     value={subtask.name}
-                    className={!isValid && !subtask.name ? "red-border" : ""}
+                    className={!isValid && !subtask.name.trim() ? "red-border" : ""}
                   />
-                  {!isValid && !subtask.name ? (
+                  {!isValid && !subtask.name.trim() ? (
                     <span className="cant-be-empty-span text-L">
                       {" "}
                       Can't be empty
@@ -154,7 +169,7 @@ export default function AddEditTaskModal({ type }) {
             const isValid = validate();
             if (isValid) onSubmit(type);
           }}
-          className="add-column-btn"
+          className="create-btn"
         >
           Create Task
         </button>
