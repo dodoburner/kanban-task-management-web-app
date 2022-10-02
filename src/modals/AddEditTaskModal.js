@@ -4,8 +4,14 @@ import { v4 as uuidv4 } from "uuid";
 import crossIcon from "../assets/icon-cross.svg";
 import boardsSlice from "../redux/boardsSlice";
 
-export default function AddEditTaskModal({ type, setIsAddTaskModalOpen }) {
+export default function AddEditTaskModal({
+  type,
+  setIsAddTaskModalOpen,
+  taskIndex,
+  prevColIndex,
+}) {
   const dispatch = useDispatch();
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
   const [isValid, setIsValid] = useState(true);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -13,11 +19,24 @@ export default function AddEditTaskModal({ type, setIsAddTaskModalOpen }) {
     (board) => board.isActive
   );
   const columns = board.columns;
+  const col = columns.find((col, index) => index === prevColIndex);
+  const task = col.tasks.find((task, index) => index === taskIndex);
   const [status, setStatus] = useState(columns[0].name);
-  const [colIndex, setColIndex] = useState(0);
+  const [colIndex, setColIndex] = useState();
   const [subtasks, setSubtasks] = useState([
-    { name: "", isCompleted: false, id: uuidv4() },
+    { title: "", isCompleted: false, id: uuidv4() },
   ]);
+
+  if (type === "edit" && isFirstLoad) {
+    setSubtasks(
+      task.subtasks.map((subtask) => {
+        return { ...subtask, id: uuidv4() };
+      })
+    );
+    setTitle(task.title);
+    setDescription(task.description);
+    setIsFirstLoad(false);
+  }
 
   const validate = () => {
     setIsValid(false);
@@ -37,7 +56,7 @@ export default function AddEditTaskModal({ type, setIsAddTaskModalOpen }) {
     setSubtasks((prevState) => {
       const newState = [...prevState];
       const subtask = newState.find((subtask) => subtask.id === id);
-      subtask.name = newValue;
+      subtask.title = newValue;
       return newState;
     });
   };
@@ -70,7 +89,7 @@ export default function AddEditTaskModal({ type, setIsAddTaskModalOpen }) {
         if (e.target !== e.currentTarget) {
           return;
         }
-        setIsAddTaskModalOpen(false)
+        setIsAddTaskModalOpen(false);
       }}
     >
       <div className="modal">
@@ -117,10 +136,12 @@ export default function AddEditTaskModal({ type, setIsAddTaskModalOpen }) {
                       onChangeSubtasks(subtask.id, e.target.value);
                     }}
                     type="text"
-                    value={subtask.name}
-                    className={!isValid && !subtask.name.trim() ? "red-border" : ""}
+                    value={subtask.title}
+                    className={
+                      !isValid && !subtask.title.trim() ? "red-border" : ""
+                    }
                   />
-                  {!isValid && !subtask.name.trim() ? (
+                  {!isValid && !subtask.title.trim() ? (
                     <span className="cant-be-empty-span text-L">
                       {" "}
                       Can't be empty
@@ -168,7 +189,7 @@ export default function AddEditTaskModal({ type, setIsAddTaskModalOpen }) {
           onClick={() => {
             const isValid = validate();
             if (isValid) onSubmit(type);
-            setIsAddTaskModalOpen(false)
+            setIsAddTaskModalOpen(false);
           }}
           className="create-btn"
         >

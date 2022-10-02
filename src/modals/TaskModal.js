@@ -7,6 +7,7 @@ import DeleteModal from "./DeleteModal";
 import elipsis from "../assets/icon-vertical-ellipsis.svg";
 import openModalsSlice from "../redux/openModalsSlice";
 import boardsSlice from "../redux/boardsSlice";
+import AddEditTaskModal from "./AddEditTaskModal";
 
 export default function TaskModal() {
   const dispatch = useDispatch();
@@ -61,6 +62,13 @@ export default function TaskModal() {
     }
   };
 
+  const [isAddTaskModalOpen, setIsAddTaskModalOpen] = useState(false);
+
+  const setOpenEditModal = () => {
+    setIsAddTaskModalOpen(true)
+    dispatch(openModalsSlice.actions.toggleElipsisMenu({ type: "" }));
+  }
+
   const setOpenDeleteModal = () => {
     dispatch(openModalsSlice.actions.toggleDeleteModal({ type: "task" }));
     dispatch(openModalsSlice.actions.toggleElipsisMenu({ type: "" }));
@@ -86,7 +94,7 @@ export default function TaskModal() {
           />
           {toggleElipsisMenu.isOpen ? (
             <ElipsisMenu
-              // setOpenEditModal={setOpenEditModal}
+              setOpenEditModal={setOpenEditModal}
               setOpenDeleteModal={setOpenDeleteModal}
               type="Task"
             />
@@ -127,6 +135,15 @@ export default function TaskModal() {
           onDeleteBtnClick={onDeleteBtnClick}
           type="task"
           title={task.title}
+        />
+      ) : null}
+
+      {isAddTaskModalOpen ? (
+        <AddEditTaskModal
+          setIsAddTaskModalOpen={setIsAddTaskModalOpen}
+          type="edit"
+          taskIndex={taskIndex}
+          prevColIndex={colIndex}
         />
       ) : null}
     </div>
