@@ -20,10 +20,11 @@ export default function AddEditTaskModal({
   );
   const columns = board.columns;
   const col = columns.find((col, index) => index === prevColIndex);
-  const task = col.tasks.find((task, index) => index === taskIndex);
+  const task = col ? col.tasks.find((task, index) => index === taskIndex) : [];
   const [status, setStatus] = useState(columns[0].name);
-  const [colIndex, setColIndex] = useState();
+  const [newColIndex, setNewColIndex] = useState(prevColIndex || 0);
   const [subtasks, setSubtasks] = useState([
+    { title: "", isCompleted: false, id: uuidv4() },
     { title: "", isCompleted: false, id: uuidv4() },
   ]);
 
@@ -43,11 +44,11 @@ export default function AddEditTaskModal({
     if (!title.trim() || !description.trim()) {
       return false;
     }
-    subtasks.forEach((subtask) => {
-      if (!subtask.name.trim()) {
+    for (let i = 0; i < subtasks.length; i++) {
+      if (!subtasks[i].title.trim()) {
         return false;
       }
-    });
+    }
     setIsValid(true);
     return true;
   };
@@ -67,24 +68,38 @@ export default function AddEditTaskModal({
 
   const onChangeStatus = (e) => {
     setStatus(e.target.value);
-    setColIndex(e.target.selectedIndex);
+    setNewColIndex(e.target.selectedIndex);
   };
 
   const onSubmit = (type) => {
-    dispatch(
-      boardsSlice.actions.addTask({
-        title,
-        description,
-        subtasks,
-        status,
-        colIndex,
-      })
-    );
+    if (type === "add") {
+      dispatch(
+        boardsSlice.actions.addTask({
+          title,
+          description,
+          subtasks,
+          status,
+          newColIndex,
+        })
+      );
+    } else {
+      dispatch(
+        boardsSlice.actions.editTask({
+          title,
+          description,
+          subtasks,
+          status,
+          taskIndex,
+          prevColIndex,
+          newColIndex,
+        })
+      );
+    }
   };
 
   return (
     <div
-      className="modal-container dimmed"
+      className={`modal-container ${type === "add" ? "dimmed" : ""}`}
       onClick={(e) => {
         if (e.target !== e.currentTarget) {
           return;
@@ -164,12 +179,12 @@ export default function AddEditTaskModal({
           onClick={() => {
             setSubtasks((state) => [
               ...state,
-              { name: "", isCompleted: false, id: uuidv4() },
+              { title: "", isCompleted: false, id: uuidv4() },
             ]);
           }}
           className="add-column-btn btn-light"
         >
-          + Add New Column
+          + Add New Subtask
         </button>
 
         <div className="select-column-container">
@@ -188,8 +203,10 @@ export default function AddEditTaskModal({
         <button
           onClick={() => {
             const isValid = validate();
-            if (isValid) onSubmit(type);
-            setIsAddTaskModalOpen(false);
+            if (isValid) {
+              onSubmit(type);
+              setIsAddTaskModalOpen(false);
+            }
           }}
           className="create-btn"
         >

@@ -22,6 +22,11 @@ input {
 }
 
 .dimmed {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-container {
+  padding: 24px 16px;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -30,5 +35,4 @@ input {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5);
 }

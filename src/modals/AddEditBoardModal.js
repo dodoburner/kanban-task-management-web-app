@@ -34,11 +34,11 @@ export default function AddEditBoardModal({ type }) {
     if (!name.trim()) {
       return false;
     }
-    newColumns.forEach((column) => {
-      if (!column.name.trim()) {
+    for (let i = 0; i < newColumns.length; i++) {
+      if (!newColumns[i].name.trim()) {
         return false;
       }
-    });
+    }
     setIsValid(true);
     return true;
   };

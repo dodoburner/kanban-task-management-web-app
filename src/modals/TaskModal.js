@@ -57,6 +57,7 @@ export default function TaskModal() {
     if (e.target.textContent === "Delete") {
       dispatch(boardsSlice.actions.deleteTask({ taskIndex, colIndex }));
       dispatch(openModalsSlice.actions.closeTaskModal());
+      dispatch(openModalsSlice.actions.toggleDeleteModal({ type: "" }));
     } else {
       dispatch(openModalsSlice.actions.toggleDeleteModal({ type: "" }));
     }
