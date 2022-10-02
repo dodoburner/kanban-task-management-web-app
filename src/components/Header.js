@@ -50,6 +50,7 @@ export default function Header() {
             board.columns.length > 0 ? "" : "btn-off"
           }`}
           onClick={() => setIsAddTaskModalOpen(true)}
+          disabled={board.columns.length === 0}
         >
           <img src={addTaskMobile} alt="add task" />
         </button>
