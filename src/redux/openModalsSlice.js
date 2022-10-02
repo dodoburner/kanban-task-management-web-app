@@ -27,12 +27,12 @@ const openModalsSlice = createSlice({
       state.toggleBoardModal.type = action.payload.type;
     },
     openTaskModal: (state, action) => {
-      state.toggleTaskModal.isOpen = !state.toggleTaskModal.isOpen;
+      state.toggleTaskModal.isOpen = true;
       state.toggleTaskModal.taskIndex = action.payload.taskIndex;
       state.toggleTaskModal.colIndex = action.payload.colIndex;
     },
     closeTaskModal: (state) => {
-      state.toggleTaskModal.isOpen = !state.toggleTaskModal.isOpen;
+      state.toggleTaskModal.isOpen = false;
     },
     toggleElipsisMenu: (state, action) => {
       state.toggleElipsisMenu.isOpen = !state.toggleElipsisMenu.isOpen;

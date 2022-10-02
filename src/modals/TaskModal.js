@@ -14,9 +14,7 @@ export default function TaskModal() {
   const modalsState = useSelector((state) => state.openModals);
   const toggleElipsisMenu = modalsState.toggleElipsisMenu;
   const toggleDeleteModal = modalsState.toggleDeleteModal;
-  const payload = modalsState.toggleTaskModal;
-  const taskIndex = payload.taskIndex;
-  const colIndex = payload.colIndex;
+  const {taskIndex, colIndex} = modalsState.toggleTaskModal;
   const boards = useSelector((state) => state.boards);
   const board = boards.find((board) => board.isActive === true);
   const columns = board.columns;
