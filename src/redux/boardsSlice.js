@@ -9,7 +9,7 @@ const boardsSlice = createSlice({
       const payload = action.payload;
       const board = {
         name: payload.name,
-        isActive: false,
+        isActive: state.boards ? false : true,
         columns: [],
       };
       board.columns = payload.newColumns;
