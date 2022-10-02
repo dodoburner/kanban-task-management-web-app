@@ -89,9 +89,9 @@ export default function AddEditBoardModal({ type }) {
             placeholder="e.g. Web Design"
             className={!isValid && !name.trim() ? "red-border" : ""}
           />
-          {!isValid && !name.trim() ? (
+          {!isValid && !name.trim() && (
             <span className="cant-be-empty-span text-L"> Can't be empty</span>
-          ) : null}
+          )}
         </div>
 
         <label>Board Columns</label>
@@ -108,12 +108,12 @@ export default function AddEditBoardModal({ type }) {
                     value={column.name}
                     className={!isValid && !column.name.trim() ? "red-border" : ""}
                   />
-                  {!isValid && !column.name.trim() ? (
+                  {!isValid && !column.name.trim() && (
                     <span className="cant-be-empty-span text-L">
                       {" "}
                       Can't be empty
                     </span>
-                  ) : null}
+                  )}
                 </div>
                 <img
                   src={crossIcon}

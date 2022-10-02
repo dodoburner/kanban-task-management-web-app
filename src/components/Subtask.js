@@ -25,7 +25,7 @@ export default function Subtask({ index, taskIndex, colIndex }) {
         checked={checked}
         onChange={onChange}
       />
-      <p className={`subtask-text text-M ${checked ? "checked" : ""}`}>
+      <p className={`subtask-text text-M ${checked && "checked"}`}>
         {subtask.title}
       </p>
     </div>

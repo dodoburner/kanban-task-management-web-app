@@ -23,14 +23,14 @@ export default function Board() {
     if (e.target.textContent === "Delete") {
       dispatch(boardsSlice.actions.deleteBoard());
       dispatch(boardsSlice.actions.setBoardActive({ index: 0 }));
-      dispatch(openModalsSlice.actions.toggleDeleteModal({ type: ""}));
+      dispatch(openModalsSlice.actions.toggleDeleteModal({ type: "" }));
     } else {
-      dispatch(openModalsSlice.actions.toggleDeleteModal({ type: ""}));
+      dispatch(openModalsSlice.actions.toggleDeleteModal({ type: "" }));
     }
   };
 
   return (
-    <div className={`board ${board.columns.length > 0 ? "" : "board-empty"}`}>
+    <div className={`board ${board.columns.length === 0 && "board-empty"}`}>
       {columns.length > 0 ? (
         columns.map((col, index) => {
           return <Column key={index} colIndex={index} />;
@@ -44,17 +44,17 @@ export default function Board() {
         </>
       )}
 
-      {toggleBoardModal.isOpen ? (
+      {toggleBoardModal.isOpen && (
         <AddEditBoardModal type={toggleBoardModal.type} />
-      ) : null}
-      {toggleTaskModal.isOpen ? <TaskModal /> : null}
-      {toggleDeleteModal.isOpen && toggleDeleteModal.type === "board" ? (
+      )}
+      {toggleTaskModal.isOpen && <TaskModal />}
+      {toggleDeleteModal.isOpen && toggleDeleteModal.type === "board" && (
         <DeleteModal
           type="board"
           title={board.name}
           onDeleteBtnClick={onDeleteBtnClick}
         />
-      ) : null}
+      )}
     </div>
   );
 }

@@ -120,9 +120,9 @@ export default function AddEditTaskModal({
             placeholder="e.g. Take coffee break"
             className={!isValid && !title.trim() ? "red-border" : ""}
           />
-          {!isValid && !title.trim() ? (
+          {!isValid && !title.trim() && (
             <span className="cant-be-empty-span text-L"> Can't be empty</span>
-          ) : null}
+          )}
         </div>
 
         <label htmlFor="task-name-input">Description</label>
@@ -136,9 +136,9 @@ export default function AddEditTaskModal({
             a little."
             className={!isValid && !description.trim() ? "red-border" : ""}
           />
-          {!isValid && !description.trim() ? (
+          {!isValid && !description.trim() && (
             <span className="cant-be-empty-span text-L"> Can't be empty</span>
-          ) : null}
+          )}
         </div>
 
         <label>Subtasks</label>

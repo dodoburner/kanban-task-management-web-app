@@ -14,7 +14,7 @@ export default function TaskModal() {
   const modalsState = useSelector((state) => state.openModals);
   const toggleElipsisMenu = modalsState.toggleElipsisMenu;
   const toggleDeleteModal = modalsState.toggleDeleteModal;
-  const {taskIndex, colIndex} = modalsState.toggleTaskModal;
+  const { taskIndex, colIndex } = modalsState.toggleTaskModal;
   const boards = useSelector((state) => state.boards);
   const board = boards.find((board) => board.isActive === true);
   const columns = board.columns;
@@ -64,9 +64,9 @@ export default function TaskModal() {
   const [isAddTaskModalOpen, setIsAddTaskModalOpen] = useState(false);
 
   const setOpenEditModal = () => {
-    setIsAddTaskModalOpen(true)
+    setIsAddTaskModalOpen(true);
     dispatch(openModalsSlice.actions.toggleElipsisMenu({ type: "" }));
-  }
+  };
 
   const setOpenDeleteModal = () => {
     dispatch(openModalsSlice.actions.toggleDeleteModal({ type: "task" }));
@@ -75,10 +75,10 @@ export default function TaskModal() {
 
   return (
     <div
-      className={`modal-container ${toggleDeleteModal.isOpen ? "" : "dimmed"}`}
+      className={`modal-container ${!toggleDeleteModal.isOpen && "dimmed"}`}
       onClick={onClose}
     >
-      <div className={`task-modal ${toggleDeleteModal.isOpen ? "none" : ""}`}>
+      <div className={`task-modal ${toggleDeleteModal.isOpen && "none"}`}>
         <div className="task-modal-title-container">
           <p className="heading-L">{task.title}</p>
           <img
@@ -91,13 +91,13 @@ export default function TaskModal() {
               )
             }
           />
-          {toggleElipsisMenu.isOpen ? (
+          {toggleElipsisMenu.isOpen && (
             <ElipsisMenu
               setOpenEditModal={setOpenEditModal}
               setOpenDeleteModal={setOpenDeleteModal}
               type="Task"
             />
-          ) : null}
+          )}
         </div>
         <p className="task-description text-L">{task.description}</p>
 
@@ -129,22 +129,22 @@ export default function TaskModal() {
         </div>
       </div>
 
-      {toggleDeleteModal.isOpen ? (
+      {toggleDeleteModal.isOpen && (
         <DeleteModal
           onDeleteBtnClick={onDeleteBtnClick}
           type="task"
           title={task.title}
         />
-      ) : null}
+      )}
 
-      {isAddTaskModalOpen ? (
+      {isAddTaskModalOpen && (
         <AddEditTaskModal
           setIsAddTaskModalOpen={setIsAddTaskModalOpen}
           type="edit"
           taskIndex={taskIndex}
           prevColIndex={colIndex}
         />
-      ) : null}
+      )}
     </div>
   );
 }

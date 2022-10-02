@@ -46,9 +46,7 @@ export default function Header() {
           />
         </div>
         <button
-          className={`add-task-btn ${
-            board.columns.length > 0 ? "" : "btn-off"
-          }`}
+          className={`add-task-btn ${board.columns.length === 0 && "btn-off"}`}
           onClick={() => setIsAddTaskModalOpen(true)}
           disabled={board.columns.length === 0}
         >
@@ -65,23 +63,21 @@ export default function Header() {
           alt="menu for deleting or editing board"
         />
 
-        {toggleElipsisMenu.isOpen && toggleElipsisMenu.type === "board" ? (
+        {toggleElipsisMenu.isOpen && toggleElipsisMenu.type === "board" && (
           <ElipsisMenu
             type="board"
             setOpenEditModal={setOpenEditModal}
             setOpenDeleteModal={setOpenDeleteModal}
           />
-        ) : null}
-        {openDropdown ? (
-          <HeaderDropdown setOpenDropdown={setOpenDropdown} />
-        ) : null}
+        )}
+        {openDropdown && <HeaderDropdown setOpenDropdown={setOpenDropdown} />}
       </header>
-      {isAddTaskModalOpen ? (
+      {isAddTaskModalOpen && (
         <AddEditTaskModal
           setIsAddTaskModalOpen={setIsAddTaskModalOpen}
           type="add"
         />
-      ) : null}
+      )}
     </div>
   );
 }
