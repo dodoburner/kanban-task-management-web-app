@@ -7,6 +7,7 @@ import Column from "./Column";
 import DeleteModal from "../modals/DeleteModal";
 import boardsSlice from "../redux/boardsSlice";
 import openModalsSlice from "../redux/openModalsSlice";
+import EmptyBoard from "./EmptyBoard";
 
 export default function Board() {
   const dispatch = useDispatch();
@@ -30,27 +31,13 @@ export default function Board() {
   };
 
   return (
-    <div className={`board ${board.columns.length === 0 && "board-empty"}`}>
+    <div className="board">
       {columns.length > 0 ? (
         columns.map((col, index) => {
           return <Column key={index} colIndex={index} />;
         })
       ) : (
-        <>
-          <h3 className="board-empty-text">
-            This board is empty. Create a new column to get started.
-          </h3>
-          <button
-            onClick={() => {
-              dispatch(
-                openModalsSlice.actions.toggleBoardModal({ type: "edit" })
-              );
-            }}
-            className="add-column-btn"
-          >
-            + Add New Column
-          </button>
-        </>
+        <EmptyBoard type="edit" />
       )}
 
       {toggleBoardModal.isOpen && (

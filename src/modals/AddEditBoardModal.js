@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import crossIcon from "../assets/icon-cross.svg";
 import boardsSlice from "../redux/boardsSlice";
-import modalsSlice from "../redux/openModalsSlice";
+import openModalsSlice from "../redux/openModalsSlice";
 import "../styles/BoardModals.css";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 export default function AddEditBoardModal({ type }) {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ export default function AddEditBoardModal({ type }) {
   if (type === "edit" && isFirstLoad) {
     setNewColumns(
       board.columns.map((col) => {
-        return {...col, id: uuidv4()}
+        return { ...col, id: uuidv4() };
       })
     );
     setName(board.name);
@@ -46,7 +46,7 @@ export default function AddEditBoardModal({ type }) {
   const onChange = (id, newValue) => {
     setNewColumns((prevState) => {
       const newState = [...prevState];
-      const column = newState.find((col) => col.id === id)
+      const column = newState.find((col) => col.id === id);
       column.name = newValue;
       return newState;
     });
@@ -60,11 +60,9 @@ export default function AddEditBoardModal({ type }) {
     if (type === "add") {
       dispatch(boardsSlice.actions.addBoard({ name, newColumns }));
     } else {
-      dispatch(
-        boardsSlice.actions.editBoard({ name, newColumns })
-      );
+      dispatch(boardsSlice.actions.editBoard({ name, newColumns }));
     }
-    dispatch(modalsSlice.actions.toggleBoardModal({ type: "" }));
+    dispatch(openModalsSlice.actions.toggleBoardModal({ type: "" }));
   };
 
   return (
@@ -74,7 +72,7 @@ export default function AddEditBoardModal({ type }) {
         if (e.target !== e.currentTarget) {
           return;
         }
-        dispatch(modalsSlice.actions.toggleBoardModal({ type: "" }));
+        dispatch(openModalsSlice.actions.toggleBoardModal({ type: "" }));
       }}
     >
       <div className="modal">
@@ -106,7 +104,9 @@ export default function AddEditBoardModal({ type }) {
                     }}
                     type="text"
                     value={column.name}
-                    className={!isValid && !column.name.trim() ? "red-border" : ""}
+                    className={
+                      !isValid && !column.name.trim() ? "red-border" : ""
+                    }
                   />
                   {!isValid && !column.name.trim() && (
                     <span className="cant-be-empty-span text-L">
@@ -129,7 +129,10 @@ export default function AddEditBoardModal({ type }) {
 
         <button
           onClick={() => {
-            setNewColumns((state) => [...state, {name: "", tasks:[], id: uuidv4()}]);
+            setNewColumns((state) => [
+              ...state,
+              { name: "", tasks: [], id: uuidv4() },
+            ]);
           }}
           className="add-column-btn btn-light"
         >
