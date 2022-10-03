@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import AddEditBoardModal from "../modals/AddEditBoardModal";
-import openModalsSlice from "../redux/openModalsSlice";
 
 export default function EmptyBoard({ type }) {
-  const dispatch = useDispatch();
-  const [isAddBoardModalOpen, setIsAddBoardModalOpen] = useState(false);
+  const [isBoardModalOpen, setIsBoardModalOpen] = useState(false);
 
   return (
     <div className="board-empty">
@@ -16,15 +13,13 @@ export default function EmptyBoard({ type }) {
       </h3>
       <button
         onClick={() => {
-          type === "add"
-            ? setIsAddBoardModalOpen(true)
-            : dispatch(openModalsSlice.actions.toggleBoardModal({ type: "edit" }));
+          setIsBoardModalOpen(true);
         }}
         className="add-column-btn"
       >
         {type === "edit" ? "+ Add New Column" : "+ Add New Board"}
       </button>
-      {isAddBoardModalOpen && <AddEditBoardModal type="add" />}
+      {isBoardModalOpen && <AddEditBoardModal type={type} setIsBoardModalOpen={setIsBoardModalOpen} />}
     </div>
   );
 }

@@ -4,9 +4,11 @@ import boardIcon from "../assets/icon-board.svg";
 import darkIcon from "../assets/icon-dark-theme.svg";
 import lightIcon from "../assets/icon-light-theme.svg";
 import boardsSlice from "../redux/boardsSlice";
-import modalsSlice from "../redux/openModalsSlice";
 
-export default function HeaderDropdown({ setOpenDropdown }) {
+export default function HeaderDropdown({
+  setOpenDropdown,
+  setIsBoardModalOpen,
+}) {
   const dispatch = useDispatch();
   const boards = useSelector((state) => state.boards);
 
@@ -34,7 +36,7 @@ export default function HeaderDropdown({ setOpenDropdown }) {
           <div
             className="dropdown-board dropdown-create-board-btn"
             onClick={() => {
-              dispatch(modalsSlice.actions.toggleBoardModal({ type: 'add' }));
+              setIsBoardModalOpen(true);
               setOpenDropdown((state) => !state);
             }}
           >

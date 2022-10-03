@@ -9,26 +9,39 @@ import elipsis from "../assets/icon-vertical-ellipsis.svg";
 import HeaderDropdown from "./HeaderDropdown";
 import ElipsisMenu from "./ElipsisMenu.js";
 import AddEditTaskModal from "../modals/AddEditTaskModal";
-import openModalsSlice from "../redux/openModalsSlice";
+import AddEditBoardModal from "../modals/AddEditBoardModal";
+import DeleteModal from "../modals/DeleteModal";
+import boardsSlice from "../redux/boardsSlice";
 
 export default function Header() {
   const dispatch = useDispatch();
-  const [openDropdown, setOpenDropdown] = useState(false);
   const boards = useSelector((state) => state.boards);
   const board = boards.find((board) => board.isActive);
-  const openModals = useSelector((state) => state.openModals);
-  const toggleElipsisMenu = openModals.toggleElipsisMenu;
+
+  const [openDropdown, setOpenDropdown] = useState(false);
+  const [isElipsisMenuOpen, setIsElipsisMenuOpen] = useState(false);
+  const [isBoardModalOpen, setIsBoardModalOpen] = useState(false);
+  const [boardType, setBoardType] = useState("");
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
   const setOpenEditModal = () => {
-    dispatch(openModalsSlice.actions.toggleBoardModal({ type: "edit" }));
-    dispatch(openModalsSlice.actions.toggleElipsisMenu({ type: "" }));
+    setIsBoardModalOpen(true);
+    setIsElipsisMenuOpen(false);
   };
   const setOpenDeleteModal = () => {
-    dispatch(openModalsSlice.actions.toggleDeleteModal({ type: "board" }));
-    dispatch(openModalsSlice.actions.toggleElipsisMenu({ type: "" }));
+    setIsDeleteModalOpen(true);
+    setIsElipsisMenuOpen(false);
   };
 
-  const [isAddTaskModalOpen, setIsAddTaskModalOpen] = useState(false);
-
+  const onDeleteBtnClick = (e) => {
+    if (e.target.textContent === "Delete") {
+      dispatch(boardsSlice.actions.deleteBoard());
+      dispatch(boardsSlice.actions.setBoardActive({ index: 0 }));
+      setIsDeleteModalOpen(false);
+    } else {
+      setIsDeleteModalOpen(false);
+    }
+  };
   return (
     <div className="header-container">
       <header>
@@ -37,6 +50,7 @@ export default function Header() {
           className="header-name-container heading-L"
           onClick={() => {
             setOpenDropdown((state) => !state);
+            setBoardType("add")
           }}
         >
           <h3 className="header-name">{board.name}</h3>
@@ -47,34 +61,50 @@ export default function Header() {
         </div>
         <button
           className={`add-task-btn ${board.columns.length === 0 && "btn-off"}`}
-          onClick={() => setIsAddTaskModalOpen(true)}
+          onClick={() => setIsTaskModalOpen(true)}
           disabled={board.columns.length === 0}
         >
           <img src={addTaskMobile} alt="add task" />
         </button>
         <img
           onClick={() => {
-            dispatch(
-              openModalsSlice.actions.toggleElipsisMenu({ type: "board" })
-            );
+            setIsElipsisMenuOpen((prevState) => !prevState);
+            setBoardType("edit")
           }}
           className="elipsis"
           src={elipsis}
           alt="menu for deleting or editing board"
         />
 
-        {toggleElipsisMenu.isOpen && toggleElipsisMenu.type === "board" && (
+        {openDropdown && (
+          <HeaderDropdown
+            setOpenDropdown={setOpenDropdown}
+            setIsBoardModalOpen={setIsBoardModalOpen}
+          />
+        )}
+        {isElipsisMenuOpen && (
           <ElipsisMenu
-            type="board"
             setOpenEditModal={setOpenEditModal}
             setOpenDeleteModal={setOpenDeleteModal}
           />
         )}
-        {openDropdown && <HeaderDropdown setOpenDropdown={setOpenDropdown} />}
       </header>
-      {isAddTaskModalOpen && (
+      {isBoardModalOpen && (
+        <AddEditBoardModal
+          type={boardType}
+          setIsBoardModalOpen={setIsBoardModalOpen}
+        />
+      )}
+      {isDeleteModalOpen && (
+        <DeleteModal
+          type="board"
+          title={board.name}
+          onDeleteBtnClick={onDeleteBtnClick}
+        />
+      )}
+      {isTaskModalOpen && (
         <AddEditTaskModal
-          setIsAddTaskModalOpen={setIsAddTaskModalOpen}
+          setIsAddTaskModalOpen={setIsTaskModalOpen}
           type="add"
         />
       )}

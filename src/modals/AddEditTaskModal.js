@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import crossIcon from "../assets/icon-cross.svg";
 import boardsSlice from "../redux/boardsSlice";
-import openModalsSlice from "../redux/openModalsSlice";
 
 export default function AddEditTaskModal({
   type,
+  setIsTaskModalOpen,
   setIsAddTaskModalOpen,
   taskIndex,
   prevColIndex,
@@ -207,7 +207,7 @@ export default function AddEditTaskModal({
             if (isValid) {
               onSubmit(type);
               setIsAddTaskModalOpen(false);
-              dispatch(openModalsSlice.actions.closeTaskModal())
+              type === "edit" && setIsTaskModalOpen(false);
             }
           }}
           className="create-btn"
