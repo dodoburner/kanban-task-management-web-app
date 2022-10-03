@@ -42,7 +42,7 @@ export default function AddEditTaskModal({
 
   const validate = () => {
     setIsValid(false);
-    if (!title.trim() || !description.trim()) {
+    if (!title.trim()) {
       return false;
     }
     for (let i = 0; i < subtasks.length; i++) {
