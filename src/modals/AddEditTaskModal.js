@@ -9,7 +9,7 @@ export default function AddEditTaskModal({
   setIsTaskModalOpen,
   setIsAddTaskModalOpen,
   taskIndex,
-  prevColIndex,
+  prevColIndex = 0,
 }) {
   const dispatch = useDispatch();
   const [isFirstLoad, setIsFirstLoad] = useState(true);
@@ -22,8 +22,8 @@ export default function AddEditTaskModal({
   const columns = board.columns;
   const col = columns.find((col, index) => index === prevColIndex);
   const task = col ? col.tasks.find((task, index) => index === taskIndex) : [];
-  const [status, setStatus] = useState(columns[0].name);
-  const [newColIndex, setNewColIndex] = useState(prevColIndex || 0);
+  const [status, setStatus] = useState(columns[prevColIndex].name);
+  const [newColIndex, setNewColIndex] = useState(prevColIndex);
   const [subtasks, setSubtasks] = useState([
     { title: "", isCompleted: false, id: uuidv4() },
     { title: "", isCompleted: false, id: uuidv4() },
