@@ -2,6 +2,11 @@ body {
   margin: 0;
   font-family: 'Plus Jakarta Sans', sans-serif;
   color: #000112;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 * {
@@ -35,4 +40,8 @@ input {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.scroll-none {
+  overflow: hidden;
 }
