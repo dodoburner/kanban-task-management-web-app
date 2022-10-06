@@ -13,7 +13,15 @@ export default function HeaderDropdown({
   const boards = useSelector((state) => state.boards);
 
   return (
-    <div className="dropdown-container">
+    <div
+      className="dropdown-container"
+      onClick={(e) => {
+        if (e.target !== e.currentTarget) {
+          return;
+        }
+        setOpenDropdown(false);
+      }}
+    >
       <div className="dropdown-modal">
         <h3>ALL BOARDS ({boards.length})</h3>
         <div className="dropdown-boards">
