@@ -134,11 +134,7 @@ export default function AddEditTaskModal({
             placeholder="e.g. It's always good to take a break. This 
             15 minute break will  recharge the batteries 
             a little."
-            className={!isValid && !description.trim() ? "red-border" : ""}
           />
-          {!isValid && !description.trim() && (
-            <span className="cant-be-empty-span text-L"> Can't be empty</span>
-          )}
         </div>
 
         <label>Subtasks</label>
