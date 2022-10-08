@@ -69,6 +69,10 @@
   border-radius: 8px;
 }
 
+.dark .elipsis-menu {
+  background: #20212C;
+}
+
 .elipsis-menu p {
   cursor: pointer;
 }

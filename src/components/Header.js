@@ -91,6 +91,7 @@ export default function Header() {
           <ElipsisMenu
             setOpenEditModal={setOpenEditModal}
             setOpenDeleteModal={setOpenDeleteModal}
+            type="board"
           />
         )}
       </header>
