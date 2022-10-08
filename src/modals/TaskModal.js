@@ -111,14 +111,14 @@ export default function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen}) {
         })}
 
         <div className="select-column-container">
-          <p className="current-status-text text-M">Current Status</p>
+          <label className="text-M">Current Status</label>
           <select
             className="select-status text-L"
             value={status}
             onChange={onChange}
           >
             {columns.map((col, index) => (
-              <option key={index}>{col.name}</option>
+              <option className="status-options" key={index}>{col.name}</option>
             ))}
           </select>
         </div>

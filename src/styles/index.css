@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
 }
 
 * {
@@ -8,23 +8,25 @@ body {
   padding: 0;
   border: none;
   box-sizing: border-box;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
 }
 
 button,
 input,
 select,
-textarea,
-option {
+textarea {
   cursor: pointer;
   color: inherit;
   background-color: inherit;
 }
 
-input[type=checkbox] {
-  accent-color: #635FC7;
+select:focus {
+  outline-color: #635fc7;
 }
 
+input[type="checkbox"] {
+  accent-color: #635fc7;
+}
 
 .light {
   color: #000112;

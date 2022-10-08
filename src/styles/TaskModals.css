@@ -130,3 +130,11 @@
   background-repeat: no-repeat;
   background-position: right 16px top 50%;
 }
+
+.status-options {
+  color: #828FA3;
+}
+
+.dark .status-options {
+  background: #20212C;
+}
