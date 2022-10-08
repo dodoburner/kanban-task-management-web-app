@@ -51,6 +51,7 @@ export default function Header() {
           className="header-name-container heading-L"
           onClick={() => {
             setOpenDropdown((state) => !state);
+            setIsElipsisMenuOpen(false)
             setBoardType("add");
           }}
         >
@@ -62,7 +63,10 @@ export default function Header() {
         </div>
         <button
           className={`add-task-btn ${board.columns.length === 0 && "btn-off"}`}
-          onClick={() => setIsTaskModalOpen(true)}
+          onClick={() => {
+            setIsTaskModalOpen(true)
+            setIsElipsisMenuOpen(false)
+          }}
           disabled={board.columns.length === 0}
         >
           <img src={addTaskMobile} alt="add task" />
