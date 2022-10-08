@@ -99,7 +99,7 @@ header .elipsis-menu {
   filter: invert(100%) sepia(96%) saturate(16%) hue-rotate(350deg) brightness(104%) contrast(100%);
 }
 
-.light-toggle {
+.theme-toggle {
   padding: 14px;
   display: flex;
   align-items: center;
@@ -147,10 +147,6 @@ header .elipsis-menu {
   transition: .4s;
 }
 
-input:checked + .slider {
-  background-color: #ccc;
-}
-
 input:focus + .slider {
   box-shadow: 0 0 1px #ccc;
 }
@@ -161,7 +157,6 @@ input:checked + .slider:before {
   transform: translateX(20px);
 }
 
-/* Rounded sliders */
 .slider.round {
   border-radius: 34px;
 }
