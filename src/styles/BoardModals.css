@@ -7,6 +7,10 @@
   overflow-y: scroll;
 }
 
+.dark .modal {
+  background: #2b2c37;
+}
+
 .modal button {
   width: 100%;
   height: 40px;
@@ -32,6 +36,10 @@
   font-size: 12px;
   line-height: 15px;
   color: #828fa3;
+}
+
+.dark label {
+  color: white;
 }
 
 .modal-column {
@@ -71,6 +79,12 @@ input::placeholder,
 textarea::placeholder {
   opacity: 0.25;
 }
+
+.dark input::placeholder,
+textarea::placeholder {
+  color: white;
+}
+
 
 .input-container {
   width: 100%;

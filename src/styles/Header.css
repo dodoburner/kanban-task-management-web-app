@@ -6,6 +6,10 @@ header {
   position: relative;
 }
 
+.dark header {
+  background: #2B2C37;
+}
+
 header .elipsis-menu {
   top: 90%;
   right: 2%;
@@ -60,6 +64,10 @@ header .elipsis-menu {
   padding: 16px 0;
 }
 
+.dark .dropdown-modal {
+  background: #2B2C37;
+}
+
 .dropdown-modal h3 {
   font-size: 12px;
   line-height: 15px;
@@ -108,6 +116,10 @@ header .elipsis-menu {
   margin: 16px 16px 0 16px;
   background: #F4F7FD;
   border-radius: 6px; 
+}
+
+.dark .theme-toggle {
+  background: #20212C;
 }
 
 .switch {

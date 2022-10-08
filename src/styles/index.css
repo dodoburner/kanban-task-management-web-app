@@ -1,7 +1,6 @@
 body {
   margin: 0;
   font-family: 'Plus Jakarta Sans', sans-serif;
-  color: #000112;
 }
 
 * {
@@ -13,9 +12,19 @@ body {
 }
 
 button,
-input {
+input,
+select,
+textarea,
+option {
   cursor: pointer;
+  color: inherit;
+  background-color: inherit;
 }
+
+input[type=checkbox] {
+  accent-color: #635FC7;
+}
+
 
 .light {
   color: #000112;

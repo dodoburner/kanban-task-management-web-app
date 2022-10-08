@@ -7,6 +7,10 @@
   margin-bottom: 20px;
 }
 
+.dark .task {
+  background: #2B2C37;
+}
+
 .num-of-subtasks {
   color: #828FA3;
   margin-top: 8px;

@@ -109,7 +109,7 @@ export default function AddEditTaskModal({
       }}
     >
       <div className="modal">
-        <h3>{type === "edit" ? "Edit" : "Add new"} tasks</h3>
+        <h3>{type === "edit" ? "Edit" : "Add New"} Task</h3>
         <label htmlFor="task-name-input">Task Name</label>
         <div className="input-container">
           <input
@@ -189,7 +189,7 @@ export default function AddEditTaskModal({
         </button>
 
         <div className="select-column-container">
-          <p className="current-status-text text-M">Current Status</p>
+          <label className="text-M">Current Status</label>
           <select
             className="select-status text-L"
             value={status}
