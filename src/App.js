@@ -7,12 +7,13 @@ import EmptyBoard from "./components/EmptyBoard";
 function App() {
   const dispatch = useDispatch();
   const boards = useSelector((state) => state.boards);
+  const theme = useSelector((state) => state.theme);
   const activeBoard = boards.find((board) => board.isActive);
   if (!activeBoard && boards.length > 0)
     dispatch(boardsSlice.actions.setBoardActive({ index: 0 }));
 
   return (
-    <div className="app">
+    <div className={`app ${theme}`}>
       {boards.length > 0 ? (
         <>
           <Header />

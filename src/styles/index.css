@@ -17,6 +17,14 @@ input {
   cursor: pointer;
 }
 
+.light {
+  color: #000112;
+}
+
+.dark {
+  color: white;
+}
+
 .none {
   display: none;
 }

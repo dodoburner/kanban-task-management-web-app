@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import boardIcon from "../assets/icon-board.svg";
 import darkIcon from "../assets/icon-dark-theme.svg";
 import lightIcon from "../assets/icon-light-theme.svg";
 import boardsSlice from "../redux/boardsSlice";
+import themeSlice from "../redux/themeSlice";
 
 export default function HeaderDropdown({
   setOpenDropdown,
@@ -11,6 +12,7 @@ export default function HeaderDropdown({
 }) {
   const dispatch = useDispatch();
   const boards = useSelector((state) => state.boards);
+  const theme = useSelector((state) => state.theme);
 
   return (
     <div
@@ -53,10 +55,14 @@ export default function HeaderDropdown({
           </div>
         </div>
 
-        <div className="light-toggle">
+        <div className="theme-toggle">
           <img src={lightIcon} alt="sun indicating light mode" />
           <label className="switch">
-            <input type="checkbox" />
+            <input
+              type="checkbox"
+              checked={theme === "dark"}
+              onChange={() => dispatch(themeSlice.actions.toggleTheme())}
+            />
             <span className="slider round"></span>
           </label>
           <img src={darkIcon} alt="moon indicating dark mode" />

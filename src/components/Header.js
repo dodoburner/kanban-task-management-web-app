@@ -24,6 +24,7 @@ export default function Header() {
   const [boardType, setBoardType] = useState("");
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
+
   const setOpenEditModal = () => {
     setIsBoardModalOpen(true);
     setIsElipsisMenuOpen(false);
@@ -50,7 +51,7 @@ export default function Header() {
           className="header-name-container heading-L"
           onClick={() => {
             setOpenDropdown((state) => !state);
-            setBoardType("add")
+            setBoardType("add");
           }}
         >
           <h3 className="header-name">{board.name}</h3>
@@ -69,7 +70,7 @@ export default function Header() {
         <img
           onClick={() => {
             setIsElipsisMenuOpen((prevState) => !prevState);
-            setBoardType("edit")
+            setBoardType("edit");
           }}
           className="elipsis"
           src={elipsis}
