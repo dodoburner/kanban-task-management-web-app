@@ -1,6 +1,7 @@
 .sidebar {
   min-width: 261px;
   height: 100%;
+  float: left;
 }
 
 .logo-container {

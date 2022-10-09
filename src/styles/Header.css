@@ -176,3 +176,15 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+@media only screen and (min-width: 768px) {
+  .dropdown-container {
+    position: relative;
+    padding: 0;
+    background-color: white;
+  }
+
+  .dropdown-modal {
+    box-shadow: none;
+  }
+}

@@ -1,4 +1,4 @@
-html, body, #root, .app, .main{
+html, body, #root, .app, .main, .sidebar, .board{
   min-height: 100vh;
 }
 
