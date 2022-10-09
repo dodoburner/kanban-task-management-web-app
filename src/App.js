@@ -11,6 +11,7 @@ function App() {
   const activeBoard = boards.find((board) => board.isActive);
   if (!activeBoard && boards.length > 0)
     dispatch(boardsSlice.actions.setBoardActive({ index: 0 }));
+  
 
   return (
     <div className={`app ${theme}`}>
