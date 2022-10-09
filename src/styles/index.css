@@ -1,0 +1,61 @@
+body {
+  margin: 0;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+button,
+input,
+select,
+textarea {
+  cursor: pointer;
+  color: inherit;
+  background-color: inherit;
+}
+
+select:focus {
+  outline-color: #635fc7;
+}
+
+input[type="checkbox"] {
+  accent-color: #635fc7;
+}
+
+.light {
+  color: #000112;
+}
+
+.dark {
+  color: white;
+}
+
+.none {
+  display: none;
+}
+
+.dimmed {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-container {
+  padding: 24px 16px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scroll-none {
+  overflow: hidden;
+}
