@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../styles/Header.css";
-import mobileLogo from "../assets/logo-mobile.svg";
+import logo from "../assets/logo-mobile.svg";
 import addTaskMobile from "../assets/icon-add-task-mobile.svg";
 import iconDown from "../assets/icon-chevron-down.svg";
 import iconUp from "../assets/icon-chevron-up.svg";
@@ -13,6 +13,7 @@ import AddEditBoardModal from "../modals/AddEditBoardModal";
 import DeleteModal from "../modals/DeleteModal";
 import boardsSlice from "../redux/boardsSlice";
 import { useMediaQuery } from "react-responsive";
+import Sidebar from "./Sidebar";
 
 export default function Header() {
   const isBigScreen = useMediaQuery({ query: "(min-width: 768px)" });
@@ -51,10 +52,16 @@ export default function Header() {
       setIsDeleteModalOpen(false);
     }
   };
+
   return (
     <div className="header-container">
       <header>
-        <img className="logo" src={mobileLogo} alt="logo" />
+        {/* {isBigScreen && <Sidebar />} */}
+        <div className="logo-container">
+          <img className="logo" src={logo} alt="logo" />
+          {isBigScreen && <h3 className="logo-text">kanban</h3>}{" "}
+        </div>
+
         <div className="header-name-container heading-L">
           <h3 className="header-name">{board.name}</h3>
           {!isBigScreen && (

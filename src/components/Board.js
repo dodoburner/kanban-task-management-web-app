@@ -1,23 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { useMediaQuery } from "react-responsive";
 import "../styles/Board.css";
 import Column from "./Column";
 import EmptyBoard from "./EmptyBoard";
+import Sidebar from "./Sidebar";
 
 export default function Board() {
+  const isBigScreen = useMediaQuery({ query: "(min-width: 768px)" });
+  const [isSideBarOpen, setIsSideBarOpen] = useState(true);
   const boards = useSelector((state) => state.boards);
   const board = boards.find((board) => board.isActive === true);
   const columns = board.columns;
 
   return (
     <div className="board">
-      {columns.length > 0 ? (
-        columns.map((col, index) => {
-          return <Column key={index} colIndex={index} />;
-        })
-      ) : (
-        <EmptyBoard type="edit" />
-      )}
+      {isBigScreen && <Sidebar />}
+      <div
+        className={
+          isBigScreen && isSideBarOpen ? "columns-container open-sidebar" : "columns-container"
+        }
+      >
+        {columns.length > 0 ? (
+          columns.map((col, index) => {
+            return <Column key={index} colIndex={index} />;
+          })
+        ) : (
+          <EmptyBoard type="edit" />
+        )}
+      </div>
     </div>
   );
 }

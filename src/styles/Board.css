@@ -1,13 +1,23 @@
 .board {
   background-color: #f4f7fd;
   display: flex;
+  overflow-x: scroll;
+  padding-top: 64px;
+}
+
+.dark .board {
+  background: #20212c;
+}
+
+.columns-container {
+  display: flex;
   gap: 24px;
   padding: 24px 16px;
   overflow-x: scroll;
 }
 
-.dark .board {
-  background: #20212C;
+.open-sidebar {
+  margin-left: 261px;
 }
 
 .board-empty {
