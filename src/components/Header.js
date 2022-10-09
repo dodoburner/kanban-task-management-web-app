@@ -12,8 +12,10 @@ import AddEditTaskModal from "../modals/AddEditTaskModal";
 import AddEditBoardModal from "../modals/AddEditBoardModal";
 import DeleteModal from "../modals/DeleteModal";
 import boardsSlice from "../redux/boardsSlice";
+import { useMediaQuery } from "react-responsive";
 
 export default function Header() {
+  const isBigScreen = useMediaQuery({ query: "(min-width: 768px)" });
   const dispatch = useDispatch();
   const boards = useSelector((state) => state.boards);
   const board = boards.find((board) => board.isActive);
@@ -24,6 +26,12 @@ export default function Header() {
   const [boardType, setBoardType] = useState("");
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
+
+  const onDropdownClick = () => {
+    setOpenDropdown((state) => !state);
+    setIsElipsisMenuOpen(false);
+    setBoardType("add");
+  };
 
   const setOpenEditModal = () => {
     setIsBoardModalOpen(true);
@@ -47,25 +55,23 @@ export default function Header() {
     <div className="header-container">
       <header>
         <img className="logo" src={mobileLogo} alt="logo" />
-        <div
-          className="header-name-container heading-L"
-          onClick={() => {
-            setOpenDropdown((state) => !state);
-            setIsElipsisMenuOpen(false)
-            setBoardType("add");
-          }}
-        >
+        <div className="header-name-container heading-L">
           <h3 className="header-name">{board.name}</h3>
-          <img
-            src={openDropdown ? iconUp : iconDown}
-            alt="dropdown opened/closed"
-          />
+          {!isBigScreen && (
+            <img
+              src={openDropdown ? iconUp : iconDown}
+              alt="dropdown opened/closed"
+              onClick={() => {
+                onDropdownClick();
+              }}
+            />
+          )}
         </div>
         <button
           className={`add-task-btn ${board.columns.length === 0 && "btn-off"}`}
           onClick={() => {
-            setIsTaskModalOpen(true)
-            setIsElipsisMenuOpen(false)
+            setIsTaskModalOpen(true);
+            setIsElipsisMenuOpen(false);
           }}
           disabled={board.columns.length === 0}
         >
