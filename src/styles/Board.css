@@ -1,10 +1,9 @@
 .board {
   background-color: #f4f7fd;
-  height: 100vh;
   display: flex;
   gap: 24px;
-  overflow: scroll;
   padding: 24px 16px;
+  overflow-x: scroll;
 }
 
 .dark .board {

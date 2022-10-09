@@ -16,10 +16,10 @@ function App() {
   return (
     <div className={`app ${theme}`}>
       {boards.length > 0 ? (
-        <>
+        <div className="main">
           <Header />
           <Board />
-        </>
+        </div>
       ) : (
         <EmptyBoard type="add" />
       )}
