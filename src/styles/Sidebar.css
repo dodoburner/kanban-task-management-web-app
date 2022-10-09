@@ -1,7 +1,9 @@
 .sidebar {
-  min-width: 261px;
-  height: 100%;
-  float: left;
+  width: 261px;
+  position: fixed;
+  background-color: white;
+  top: 0;
+  bottom: 0;
 }
 
 .logo-container {
@@ -15,4 +17,9 @@
 .logo-text {
   font-weight: bold;
   font-size: 32px;
+}
+
+.toggle-sidebar-container {
+  display: flex;
+  margin: 16px 0 0 24px;
 }

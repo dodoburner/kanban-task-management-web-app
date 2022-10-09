@@ -179,12 +179,18 @@ input:checked + .slider:before {
 
 @media only screen and (min-width: 768px) {
   .dropdown-container {
-    position: relative;
+    position: initial;
     padding: 0;
-    background-color: white;
   }
 
   .dropdown-modal {
     box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+  }
+
+  .theme-toggle {
+    margin-top: 110%;
+    margin-bottom: 0;
   }
 }

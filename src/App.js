@@ -19,7 +19,7 @@ function App() {
     <div className={`app ${theme}`}>
       {isBigScreen && <Sidebar />}
       {boards.length > 0 ? (
-        <div className="main">
+        <div className={isBigScreen ? "main bs-main" : "main"}>
           <Header />
           <Board />
         </div>
