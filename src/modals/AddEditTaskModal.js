@@ -192,7 +192,7 @@ export default function AddEditTaskModal({
             onChange={onChangeStatus}
           >
             {columns.map((col, index) => (
-              <option key={index}>{col.name}</option>
+              <option className="status-options" key={index}>{col.name}</option>
             ))}
           </select>
         </div>
