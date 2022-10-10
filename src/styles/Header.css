@@ -187,7 +187,8 @@ input:checked + .slider:before {
     display: flex;
     align-items: center;
     gap: 15px;
-    padding-right: 24px;
+    width: calc(261px - 16px);
+    padding-left: 10px;
     /* border-right: 1px solid #e4ebfa; */
   }
 

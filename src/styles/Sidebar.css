@@ -16,5 +16,19 @@
 }
 
 .sidebar-closed {
-  position: absolute;
+  background: #635FC7;
+  width: 56px;
+  height: 48px;
+  border-radius: 0px 100px 100px 0px;
+  bottom: 32px;
+  top: auto;
+  padding: 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-closed {
+  margin: 0;
 }

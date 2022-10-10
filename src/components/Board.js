@@ -15,7 +15,7 @@ export default function Board() {
 
   return (
     <div className="board">
-      {isBigScreen && <Sidebar />}
+      {isBigScreen && <Sidebar isSideBarOpen={isSideBarOpen} setIsSideBarOpen={setIsSideBarOpen} />}
       <div
         className={
           isBigScreen && isSideBarOpen ? "columns-container open-sidebar" : "columns-container"

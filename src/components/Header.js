@@ -13,7 +13,6 @@ import AddEditBoardModal from "../modals/AddEditBoardModal";
 import DeleteModal from "../modals/DeleteModal";
 import boardsSlice from "../redux/boardsSlice";
 import { useMediaQuery } from "react-responsive";
-import Sidebar from "./Sidebar";
 
 export default function Header() {
   const isBigScreen = useMediaQuery({ query: "(min-width: 768px)" });
@@ -56,7 +55,6 @@ export default function Header() {
   return (
     <div className="header-container">
       <header>
-        {/* {isBigScreen && <Sidebar />} */}
         <div className="logo-container">
           <img className="logo" src={logo} alt="logo" />
           {isBigScreen && <h3 className="logo-text">kanban</h3>}{" "}
