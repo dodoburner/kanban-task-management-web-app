@@ -73,14 +73,18 @@ export default function Header() {
           )}
         </div>
         <button
-          className={`add-task-btn ${board.columns.length === 0 && "btn-off"}`}
+          className={`add-task-btn heading-M ${board.columns.length === 0 && "btn-off"}`}
           onClick={() => {
             setIsTaskModalOpen(true);
             setIsElipsisMenuOpen(false);
           }}
           disabled={board.columns.length === 0}
         >
-          <img src={addTaskMobile} alt="add task" />
+          {isBigScreen ? (
+            "+ Add New Task"
+          ) : (
+            <img src={addTaskMobile} alt="add task" />
+          )}
         </button>
         <img
           onClick={() => {

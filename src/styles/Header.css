@@ -32,6 +32,7 @@ header .elipsis-menu {
 .add-task-btn {
   margin-right: 16px;
   background: #635fc7;
+  color: white;
   border-radius: 24px;
   padding: 10px 18px;
   display: flex;
@@ -65,6 +66,7 @@ header .elipsis-menu {
   box-shadow: 0px 10px 20px rgba(54, 78, 126, 0.25);
   border-radius: 8px;
   padding: 16px 0;
+  color: #828fa3;
 }
 
 .dark .dropdown-modal {
@@ -75,7 +77,6 @@ header .elipsis-menu {
   font-size: 12px;
   line-height: 15px;
   letter-spacing: 2.4px;
-  color: #828fa3;
   margin: 0 0 24px 19px;
 }
 
@@ -132,6 +133,7 @@ header .elipsis-menu {
   display: inline-block;
   width: 40px;
   height: 20px;
+  margin: 0;
 }
 
 .switch input {
@@ -222,5 +224,16 @@ input:checked + .slider:before {
     right: 0;
     bottom: 0;
     margin-bottom: 0;
+  }
+
+  .add-task-btn {
+    width: 164px;
+    height: 48px;
+    margin-right: 24px;
+  }
+
+  .elipsis {
+    height: 20px;
+    width: 5px;
   }
 }

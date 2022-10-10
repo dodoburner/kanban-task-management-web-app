@@ -142,3 +142,11 @@
 .dark .status-options {
   background: #20212C;
 }
+
+@media only screen and (min-width: 768px) {
+  .delete-modal-btns {
+    display: flex;
+    gap: 16px;
+  }
+}
+

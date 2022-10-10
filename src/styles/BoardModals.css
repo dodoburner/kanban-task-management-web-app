@@ -7,6 +7,19 @@
   overflow-y: scroll;
 }
 
+.modal-container {
+  padding: 24px 16px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
 .dark .modal {
   background: #2b2c37;
 }
@@ -102,4 +115,10 @@ textarea::placeholder {
 
 .red-border {
   border-color: #ea5555 !important;
+}
+
+@media only screen and (min-width: 768px) {
+  .modal-container {
+    padding: 50px 144px;
+  }
 }

@@ -26,6 +26,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100vw;
 }
 
 .board-empty-text {
@@ -52,4 +53,14 @@
 .dark .add-column-btn {
   background-color: white;
   color: #635fc7;
+}
+
+@media only screen and (min-width: 768px) {
+  .board {
+    padding-top: 80px;
+  }
+  
+  .columns-container {
+    padding: 24px;
+  }
 }
