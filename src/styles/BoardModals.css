@@ -17,8 +17,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 10;
 }
-
 
 .dark .modal {
   background: #2b2c37;
@@ -120,5 +120,9 @@ textarea::placeholder {
 @media only screen and (min-width: 768px) {
   .modal-container {
     padding: 50px 144px;
+  }
+
+  .modal {
+    padding: 32px;
   }
 }

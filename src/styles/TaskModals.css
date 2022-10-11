@@ -144,6 +144,10 @@
 }
 
 @media only screen and (min-width: 768px) {
+  .task-modal {
+    padding: 32px;
+  }
+  
   .delete-modal-btns {
     display: flex;
     gap: 16px;

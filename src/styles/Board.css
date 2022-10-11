@@ -3,22 +3,17 @@
   display: flex;
   overflow-x: scroll;
   padding-top: 64px;
+  gap: 24px;
+  padding: 24px 16px;
 }
 
 .dark .board {
   background: #20212c;
 }
 
-.columns-container {
-  display: flex;
-  gap: 24px;
-  padding: 24px 16px;
-  overflow-x: scroll;
-}
-
 .open-sidebar {
   margin-left: 261px;
-}
+} 
 
 .board-empty {
   display: flex;
@@ -57,10 +52,7 @@
 
 @media only screen and (min-width: 768px) {
   .board {
-    padding-top: 80px;
-  }
-  
-  .columns-container {
     padding: 24px;
+    padding-top: 104px;
   }
 }

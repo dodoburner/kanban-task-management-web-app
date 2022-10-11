@@ -14,21 +14,23 @@ export default function Board() {
   const columns = board.columns;
 
   return (
-    <div className="board">
-      {isBigScreen && <Sidebar isSideBarOpen={isSideBarOpen} setIsSideBarOpen={setIsSideBarOpen} />}
-      <div
-        className={
-          isBigScreen && isSideBarOpen ? "columns-container open-sidebar" : "columns-container"
-        }
-      >
-        {columns.length > 0 ? (
-          columns.map((col, index) => {
-            return <Column key={index} colIndex={index} />;
-          })
-        ) : (
-          <EmptyBoard type="edit" />
-        )}
-      </div>
+    <div
+      className={isBigScreen && isSideBarOpen ? "board open-sidebar" : "board"}
+    >
+      {isBigScreen && (
+        <Sidebar
+          isSideBarOpen={isSideBarOpen}
+          setIsSideBarOpen={setIsSideBarOpen}
+        />
+      )}
+
+      {columns.length > 0 ? (
+        columns.map((col, index) => {
+          return <Column key={index} colIndex={index} />;
+        })
+      ) : (
+        <EmptyBoard type="edit" />
+      )}
     </div>
   );
 }

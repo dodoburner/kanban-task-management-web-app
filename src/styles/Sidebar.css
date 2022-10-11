@@ -5,6 +5,11 @@
   position: fixed;
   top: 72px;
   bottom: 0;
+  left: 0;
+}
+
+.sidebar-infront {
+  z-index: 5;
 }
 
 .toggle-sidebar-container {

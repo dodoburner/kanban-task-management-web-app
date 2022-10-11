@@ -1,9 +1,5 @@
-html, body, #root, .app, .main, .board {
+html, body, #root, .app, .board {
   min-height: 100vh;
-}
-
-.bs-main {
-  margin-left: 261px;
 }
 
 body {

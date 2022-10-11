@@ -12,7 +12,7 @@ export default function Sidebar({ isSideBarOpen, setIsSideBarOpen }) {
   };
 
   return (
-    <div className={`sidebar  ${!isSideBarOpen && "sidebar-closed"}`}>
+    <div className={`sidebar  ${!isSideBarOpen && "sidebar-closed"} ${isBoardModalOpen && 'sidebar-infront'}`}>
       {isSideBarOpen && <HeaderDropdown setIsBoardModalOpen={setIsBoardModalOpen} />}
       <div
         className={`toggle-sidebar-container  ${
