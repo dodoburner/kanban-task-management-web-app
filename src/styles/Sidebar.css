@@ -8,6 +8,10 @@
   left: 0;
 }
 
+.dark .sidebar {
+  background: #2b2c37;
+}
+
 .sidebar-infront {
   z-index: 5;
 }
@@ -37,3 +41,4 @@
 .toggle-closed {
   margin: 0;
 }
+

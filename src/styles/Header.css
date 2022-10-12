@@ -192,7 +192,6 @@ input:checked + .slider:before {
     gap: 15px;
     width: calc(261px - 16px);
     padding-left: 10px;
-    /* border-right: 1px solid #e4ebfa; */
   }
 
   .logo-text {
@@ -209,6 +208,10 @@ input:checked + .slider:before {
     padding: 0;
     height: 90%;
     background-color: white;
+  }
+
+  .dark .dropdown-container {
+    background: #2b2c37;
   }
 
   .dropdown-modal {
