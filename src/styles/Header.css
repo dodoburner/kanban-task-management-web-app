@@ -20,6 +20,7 @@ header {
 header .elipsis-menu {
   top: 90%;
   right: 2%;
+  width: 150px;
 }
 
 .header-name-container {

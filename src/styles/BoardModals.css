@@ -1,14 +1,13 @@
 .modal {
   background-color: white;
-  width: 100%;
   padding: 24px;
   border-radius: 6px;
-  max-height: 95%;
   overflow-y: scroll;
+  max-height: 90%;
+  width: 343px;
 }
 
 .modal-container {
-  padding: 24px 16px;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -118,11 +117,8 @@ textarea::placeholder {
 }
 
 @media only screen and (min-width: 768px) {
-  .modal-container {
-    padding: 50px 144px;
-  }
-
   .modal {
     padding: 32px;
+    width: 480px;
   }
 }
