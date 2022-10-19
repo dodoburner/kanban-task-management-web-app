@@ -40,9 +40,17 @@
   margin-bottom: 16px;
 }
 
+.delete-btn:hover {
+  background: #ff9898;
+}
+
 .cancel-btn {
   background-color: rgba(99, 95, 199, 0.1);
   color: #635fc7;
+}
+
+.cancel-btn:hover {
+  background: rgba(99, 95, 199, 0.25);
 }
 
 .dark .cancel-btn {
@@ -109,6 +117,10 @@
 
 .dark .subtask {
   background: #20212c;
+}
+
+.subtask:hover {
+  background: rgba(99, 95, 199, 0.25);
 }
 
 .subtask-checkbox {

@@ -96,7 +96,7 @@ export default function Header() {
           alt="menu for deleting or editing board"
         />
 
-        {openDropdown && (
+        {openDropdown && !isBigScreen && (
           <HeaderDropdown
             setOpenDropdown={setOpenDropdown}
             setIsBoardModalOpen={setIsBoardModalOpen}

@@ -7,16 +7,21 @@
   margin-bottom: 20px;
 }
 
+.task:hover {
+  cursor: pointer;
+  color: #635fc7;
+}
+
 .dark .task {
-  background: #2B2C37;
+  background: #2b2c37;
 }
 
 .num-of-subtasks {
-  color: #828FA3;
+  color: #828fa3;
   margin-top: 8px;
 }
 
 .col-name {
-  color: #828FA3;
+  color: #828fa3;
   margin-bottom: 24px;
 }

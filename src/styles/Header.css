@@ -31,6 +31,9 @@ header .elipsis-menu {
   margin-left: 16px;
 }
 
+.header-name-container img {
+  cursor: pointer;
+}
 .add-task-btn {
   margin-right: 16px;
   background: #635fc7;
@@ -42,8 +45,13 @@ header .elipsis-menu {
   justify-content: center;
 }
 
+.add-task-btn:hover {
+  background: #A8A4FF;
+}
+
 .btn-off {
   opacity: 25%;
+  cursor: initial;
 }
 
 .elipsis {
@@ -88,6 +96,18 @@ header .elipsis-menu {
   font-size: 15px;
   margin-right: 24px;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+.dropdown-board:hover {
+  background: rgba(99, 95, 199, 0.1);
+  color: #635fc7;
+  border-radius: 0px 100px 100px 0px;
+}
+
+.dark .dropdown-board:hover {
+background: white;
+color: #635fc7;
 }
 
 .board-active {
@@ -154,6 +174,10 @@ header .elipsis-menu {
   background-color: #635fc7;
   -webkit-transition: 0.4s;
   transition: 0.4s;
+}
+
+.slider:hover {
+  background: #A8A4FF;
 }
 
 .slider:before {
