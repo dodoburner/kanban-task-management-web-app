@@ -47,7 +47,7 @@ export default function HeaderDropdown({
             className="dropdown-board dropdown-create-board-btn"
             onClick={() => {
               setIsBoardModalOpen(true);
-              setOpenDropdown((state) => !state);
+              setOpenDropdown && setOpenDropdown((state) => !state);
             }}
           >
             <img className="filter-purple" alt="board" src={boardIcon} /> +

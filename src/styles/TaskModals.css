@@ -3,7 +3,8 @@
   background-color: white;
   padding: 24px;
   border-radius: 6px;
-  width: 100%;
+  max-height: 90%;
+  width: 343px;
 }
 
 .dark .task-modal {
@@ -20,7 +21,7 @@
 }
 
 .dark .delete-modal {
-  background: #2B2C37;
+  background: #2b2c37;
 }
 
 .btn {
@@ -39,9 +40,17 @@
   margin-bottom: 16px;
 }
 
+.delete-btn:hover {
+  background: #ff9898;
+}
+
 .cancel-btn {
   background-color: rgba(99, 95, 199, 0.1);
   color: #635fc7;
+}
+
+.cancel-btn:hover {
+  background: rgba(99, 95, 199, 0.25);
 }
 
 .dark .cancel-btn {
@@ -70,7 +79,7 @@
 }
 
 .dark .elipsis-menu {
-  background: #20212C;
+  background: #20212c;
 }
 
 .elipsis-menu p {
@@ -110,6 +119,10 @@
   background: #20212c;
 }
 
+.subtask:hover {
+  background: rgba(99, 95, 199, 0.25);
+}
+
 .subtask-checkbox {
   min-width: 16px;
   min-height: 16px;
@@ -136,9 +149,21 @@
 }
 
 .status-options {
-  color: #828FA3;
+  color: #828fa3;
 }
 
 .dark .status-options {
-  background: #20212C;
+  background: #20212c;
+}
+
+@media only screen and (min-width: 768px) {
+  .task-modal, .delete-modal{
+    padding: 32px;
+    width: 480px;
+  }
+
+  .delete-modal-btns {
+    display: flex;
+    gap: 16px;
+  }
 }

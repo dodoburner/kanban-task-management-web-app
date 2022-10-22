@@ -7,16 +7,43 @@
   margin-bottom: 20px;
 }
 
+.task:hover {
+  cursor: pointer;
+  color: #635fc7;
+}
+
 .dark .task {
-  background: #2B2C37;
+  background: #2b2c37;
 }
 
 .num-of-subtasks {
-  color: #828FA3;
+  color: #828fa3;
   margin-top: 8px;
 }
 
+.column {
+  min-width: 280px;
+}
+
 .col-name {
-  color: #828FA3;
+  color: #828fa3;
   margin-bottom: 24px;
+}
+
+.add-column-column {
+  background: linear-gradient(180deg, #E9EFFA 0%, rgba(233, 239, 250, 0.5) 100%);
+  color: #828FA3;
+  border-radius: 6px;
+  min-width: 280px;
+  margin-top: 39px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.add-column-column:hover {
+  color: #635FC7;
+  transition: 0.3s;
 }

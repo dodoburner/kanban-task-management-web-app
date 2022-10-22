@@ -1,14 +1,18 @@
 .board {
   background-color: #f4f7fd;
-  height: 100vh;
   display: flex;
+  overflow-x: scroll;
   gap: 24px;
-  overflow: scroll;
   padding: 24px 16px;
+  padding-top: 88px;
 }
 
 .dark .board {
-  background: #20212C;
+  background: #20212c;
+}
+
+.open-sidebar {
+  margin-left: 261px;
 }
 
 .board-empty {
@@ -17,6 +21,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100vw;
 }
 
 .board-empty-text {
@@ -36,6 +41,11 @@
   margin-top: 24px;
 }
 
+.create-btn:hover,
+.add-column-btn:hover {
+  background-color: #a8a4ff;
+}
+
 .add-column-btn {
   margin: 0;
 }
@@ -43,4 +53,11 @@
 .dark .add-column-btn {
   background-color: white;
   color: #635fc7;
+}
+
+@media only screen and (min-width: 768px) {
+  .board {
+    padding: 24px;
+    padding-top: 104px;
+  }
 }

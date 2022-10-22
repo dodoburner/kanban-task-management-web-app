@@ -12,17 +12,19 @@ export default function DeleteModal({ type, title, onDeleteBtnClick }) {
           </p>
         ) : (
           <p className="text-L">
-              Are you sure you want to delete the "{title}" board? This
-            action will remove all columns and tasks and cannot be reversed.
+            Are you sure you want to delete the "{title}" board? This action
+            will remove all columns and tasks and cannot be reversed.
           </p>
         )}
 
-        <button onClick={onDeleteBtnClick} className="btn delete-btn">
-          Delete
-        </button>
-        <button onClick={onDeleteBtnClick} className="btn cancel-btn">
-          Cancel
-        </button>
+        <div className="delete-modal-btns">
+          <button onClick={onDeleteBtnClick} className="btn delete-btn">
+            Delete
+          </button>
+          <button onClick={onDeleteBtnClick} className="btn cancel-btn">
+            Cancel
+          </button>
+        </div>
       </div>
     </div>
   );
