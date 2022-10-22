@@ -43,6 +43,10 @@
   cursor: pointer;
 }
 
+.dark .add-column-column {
+  background: linear-gradient(180deg, rgba(43, 44, 55, 0.25) 0%, rgba(43, 44, 55, 0.125) 100%);
+}
+
 .add-column-column:hover {
   color: #635FC7;
   transition: 0.3s;
