@@ -13,7 +13,17 @@ export const getBoards: RequestHandler = async (req, res, next) => {
   }
 };
 
-export const createBoard: RequestHandler = async (req, res, next) => {
+interface CreateBoardParams {
+  name?: string;
+  columns?: string[];
+}
+
+export const createBoard: RequestHandler<
+  unknown,
+  unknown,
+  CreateBoardParams,
+  unknown
+> = async (req, res, next) => {
   const { name, columns } = req.body;
   try {
     if (!name) {
@@ -27,7 +37,22 @@ export const createBoard: RequestHandler = async (req, res, next) => {
   }
 };
 
-export const updateBoard: RequestHandler = async (req, res, next) => {
+interface UpdateBoardParams {
+  name?: string;
+  columnsToRemove?: string[];
+  columnsToAdd?: string[];
+}
+
+interface BoardUrlParams {
+  boardId?: string;
+}
+
+export const updateBoard: RequestHandler<
+  BoardUrlParams,
+  unknown,
+  UpdateBoardParams,
+  unknown
+> = async (req, res, next) => {
   const { name, columnsToRemove, columnsToAdd } = req.body;
   const { boardId } = req.params;
 
@@ -40,13 +65,13 @@ export const updateBoard: RequestHandler = async (req, res, next) => {
       throw createHttpError(400, "Board must have a name!");
     }
 
-    let board = await Board.findByIdAndUpdate(boardId, {
-      $set: { name },
-    }).exec();
+    let board = await Board.findById(boardId).exec();
 
     if (!board) {
       throw createHttpError(404, "Board not found!");
     }
+
+    board.name = name;
 
     if (columnsToAdd) {
       board = await Board.findByIdAndUpdate(
