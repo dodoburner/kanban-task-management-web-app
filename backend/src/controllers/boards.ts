@@ -15,7 +15,7 @@ export const getBoards: RequestHandler = async (req, res, next) => {
 
 interface CreateBoardParams {
   name?: string;
-  columns?: string[];
+  columns?: { name: string }[];
 }
 
 export const createBoard: RequestHandler<
@@ -25,9 +25,10 @@ export const createBoard: RequestHandler<
   unknown
 > = async (req, res, next) => {
   const { name, columns } = req.body;
+
   try {
     if (!name) {
-      createHttpError(400, "Board must have a name");
+      throw createHttpError(400, "Board must have a name");
     }
     const board = await Board.create({ name, columns });
 
@@ -44,7 +45,7 @@ interface UpdateBoardParams {
 }
 
 interface BoardUrlParams {
-  boardId?: string;
+  boardId: string;
 }
 
 export const updateBoard: RequestHandler<
