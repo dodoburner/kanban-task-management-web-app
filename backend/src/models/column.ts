@@ -1,9 +1,9 @@
 import { InferSchemaType, model, Schema, Types } from "mongoose";
-import Board from "./board";
+import Task from "./Task";
 
-const columnSchema = new Schema({
+export const columnSchema = new Schema({
   name: { type: String, required: true },
-  board: { type: Types.ObjectId, ref: Board },
+  tasks: [Task.schema],
 });
 
 type Column = InferSchemaType<typeof columnSchema>;
