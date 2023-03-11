@@ -7,6 +7,6 @@ router.get("/", BoardsController.getBoards);
 
 router.post("/", BoardsController.createBoard);
 
-router.put("/:boardId", BoardsController.updateBoard);
+router.patch("/:boardId", BoardsController.updateBoard);
 
 export default router;

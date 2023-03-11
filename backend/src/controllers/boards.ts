@@ -1,5 +1,6 @@
 import { RequestHandler } from "express";
-import { Types } from "mongoose";
+import createHttpError from "http-errors";
+import { isValidObjectId, Types } from "mongoose";
 import Board from "../models/Board";
 
 export const getBoards: RequestHandler = async (req, res, next) => {
@@ -15,9 +16,10 @@ export const getBoards: RequestHandler = async (req, res, next) => {
 export const createBoard: RequestHandler = async (req, res, next) => {
   const { name, columns } = req.body;
   try {
+    if (!name) {
+      createHttpError(400, "Board must have a name");
+    }
     const board = await Board.create({ name, columns });
-
-    await board.populate("columns");
 
     res.status(201).json(board);
   } catch (error) {
@@ -30,11 +32,22 @@ export const updateBoard: RequestHandler = async (req, res, next) => {
   const { boardId } = req.params;
 
   try {
+    if (!isValidObjectId(boardId)) {
+      throw createHttpError(400, "The board id is not valid!");
+    }
+
+    if (!name) {
+      throw createHttpError(400, "Board must have a name!");
+    }
+
     let board = await Board.findByIdAndUpdate(boardId, {
       $set: { name },
     }).exec();
 
-    // Update the columnsToAdd using $push
+    if (!board) {
+      throw createHttpError(404, "Board not found!");
+    }
+
     if (columnsToAdd) {
       board = await Board.findByIdAndUpdate(
         boardId,
@@ -45,7 +58,6 @@ export const updateBoard: RequestHandler = async (req, res, next) => {
       ).exec();
     }
 
-    // Update the columnsToRemove using $pull
     if (columnsToRemove) {
       const updatedColumns = columnsToRemove.map(
         (col: string) => new Types.ObjectId(col)
